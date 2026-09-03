@@ -1,6 +1,6 @@
 <?php
 $config = require __DIR__ . '/includes/config.php';
-$pageTitle = 'FORMA — Opening 1st September, Vienna';
+$pageTitle = 'FORMA — Coming Soon, Vienna';
 $pageCss = ['/assets/css/home.css'];
 $bodyClass = '';
 require __DIR__ . '/includes/header.php';
@@ -14,10 +14,7 @@ require __DIR__ . '/includes/header.php';
     <img src="/assets/logo/forma-logo.svg" alt="FORMA">
   </div>
 
-  <p class="el opening-date">
-    OPENING DATE<br>
-    <strong>1st sep</strong>
-  </p>
+  <p class="el opening-date">COMING SOON<br>&nbsp;</p>
 
   <div class="el actions">
     <a class="btn" href="https://wa.me/<?= htmlspecialchars($config['whatsapp_e164']) ?>?text=<?= rawurlencode('Hi, I\'d like to book an appointment.') ?>">BOOKING</a>

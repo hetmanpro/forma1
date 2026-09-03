@@ -46,7 +46,7 @@ require __DIR__ . '/includes/header.php';
     </div>
   </div>
 
-  <a class="el request-form" href="mailto:cz.salon@outlook.com?subject=New%20client%20request">Request form</a>
+  <a class="el request-form" id="request-form-btn" href="mailto:cz.salon@outlook.com?subject=New%20client%20request">Request form</a>
 
   <nav class="el legal-links">
     <a href="/legal.php">Legal Notice</a>
@@ -57,4 +57,15 @@ require __DIR__ . '/includes/header.php';
     <?php include __DIR__ . '/includes/icon-instagram.php'; ?>
   </a>
 </main>
+
+<script type="module">
+import { init, openModule } from "https://beautyprosoftware.com/online-booking-init/index.js";
+init({
+  database: 688499
+});
+document.getElementById('request-form-btn').addEventListener('click', function (e) {
+  e.preventDefault();
+  openModule();
+});
+</script>
 <?php require __DIR__ . '/includes/footer.php'; ?>
