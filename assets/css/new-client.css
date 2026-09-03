@@ -1,0 +1,143 @@
+.page-newclient {
+  aspect-ratio: 393 / 1413;
+  background: #d9d9d9;
+  color: #000;
+}
+
+.page-newclient .logo {
+  left: 27.4809cqw;
+  top: 18.5751cqw;
+  width: 54.9618cqw;
+  height: 15.1374cqw;
+}
+
+.page-newclient .logo img {
+  width: 100%;
+  height: 100%;
+}
+
+.page-newclient .heading {
+  left: 11.7048cqw;
+  top: 54.4529cqw;
+  width: 78.3715cqw;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 6.1069cqw;
+  line-height: 1.2;
+  text-align: center;
+  margin: 0;
+}
+
+.page-newclient .intro {
+  left: 12.2137cqw;
+  top: 69.7201cqw;
+  width: 78.3715cqw;
+  font-family: 'Space Mono', monospace;
+  font-size: 4.0712cqw;
+  line-height: 1.45;
+  text-align: justify;
+}
+
+.page-newclient .intro p {
+  margin: 0 0 1.2em 0;
+}
+
+.page-newclient .intro p:last-child {
+  margin-bottom: 0;
+}
+
+.page-newclient .booking-policy-title {
+  left: 12.2137cqw;
+  top: 174.8092cqw;
+  width: 78.3715cqw;
+  font-family: 'Space Mono', monospace;
+  font-weight: 400;
+  font-size: 6.1069cqw;
+  line-height: 1.2;
+  text-align: center;
+  margin: 0;
+}
+
+.page-newclient .policy-list {
+  left: 12.7226cqw;
+  top: 191.0941cqw;
+  width: 76.3359cqw;
+  font-family: 'Space Mono', monospace;
+  font-size: 3.8168cqw;
+  line-height: 1.4;
+  text-align: justify;
+}
+
+.page-newclient .policy-list .item {
+  margin: 0 0 1.3em 0;
+}
+
+.page-newclient .policy-list .item:last-child {
+  margin-bottom: 0;
+}
+
+.page-newclient .policy-list .item strong {
+  display: block;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.page-newclient .policy-list ul {
+  margin: 0;
+  padding-left: 1.1em;
+  list-style: none;
+}
+
+.page-newclient .policy-list li {
+  position: relative;
+}
+
+.page-newclient .policy-list li::before {
+  content: '\2022';
+  position: absolute;
+  left: -1.1em;
+}
+
+.page-newclient .request-form {
+  left: 24.4275cqw;
+  top: 315.0127cqw;
+  width: 51.3995cqw;
+  height: 18.5751cqw;
+  border: 1px solid #000;
+  border-radius: 50cqw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 4.5802cqw;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.page-newclient .legal-links {
+  left: 11.4504cqw;
+  top: 349.1094cqw;
+  width: 56.2341cqw;
+  height: 4.3257cqw;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.3079cqw;
+  color: #666;
+}
+
+.page-newclient .legal-links a {
+  text-decoration: underline;
+}
+
+.page-newclient .icon-instagram {
+  left: 81.6794cqw;
+  top: 347.3282cqw;
+  width: 7.4427cqw;
+  height: 7.4427cqw;
+}
+
+.page-newclient .icon-instagram img {
+  width: 100%;
+  height: 100%;
+}

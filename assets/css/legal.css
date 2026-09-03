@@ -1,0 +1,91 @@
+.page-legal {
+  container-type: inline-size;
+  min-height: 100vh;
+  background: #d9d9d9;
+  color: #000;
+  padding-bottom: 8cqw;
+}
+
+.page-legal .logo {
+  width: 54.9618cqw;
+  margin: 18.5751cqw auto 0;
+}
+
+.page-legal .logo img {
+  width: 100%;
+  height: auto;
+}
+
+.page-legal .content {
+  width: 78.3715cqw;
+  margin: 21cqw auto 0;
+  font-family: 'Space Mono', monospace;
+  font-size: 3.5623cqw;
+  line-height: 1.5;
+}
+
+.page-legal .content h1 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 400;
+  font-size: 6.1069cqw;
+  line-height: 1.2;
+  text-align: left;
+  margin: 0 0 1em 0;
+}
+
+.page-legal .content h2 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 400;
+  font-size: 6.1069cqw;
+  line-height: 1.2;
+  text-align: left;
+  margin: 2em 0 0.6em 0;
+}
+
+.page-legal .content h3 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 400;
+  font-size: 4.0712cqw;
+  letter-spacing: 0.02em;
+  margin: 2em 0 0.6em 0;
+}
+
+.page-legal .content dl {
+  margin: 0 0 1.6em 0;
+}
+
+.page-legal .content dt {
+  font-weight: 700;
+  font-size: 4.0712cqw;
+}
+
+.page-legal .content dd {
+  margin: 0;
+  font-size: 3.5623cqw;
+}
+
+.page-legal .content p {
+  margin: 0 0 1.6em 0;
+}
+
+.page-legal .content p:last-child {
+  margin-bottom: 0;
+}
+
+.page-legal .content strong {
+  font-weight: 700;
+}
+
+.page-legal .content a {
+  text-decoration: underline;
+}
+
+.page-legal .back-link {
+  display: block;
+  width: 78.3715cqw;
+  margin: 3em auto 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.3079cqw;
+  color: #666;
+  text-decoration: underline;
+}
