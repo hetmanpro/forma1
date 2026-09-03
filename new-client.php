@@ -56,12 +56,17 @@ require __DIR__ . '/includes/header.php';
   <a class="el icon-instagram" href="<?= htmlspecialchars($config['instagram_url']) ?>" target="_blank" rel="noopener" aria-label="Instagram">
     <?php include __DIR__ . '/includes/icon-instagram.php'; ?>
   </a>
+
+  <a class="el icon-whatsapp" href="https://wa.me/<?= htmlspecialchars($config['whatsapp_e164']) ?>" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <?php include __DIR__ . '/includes/icon-whatsapp.php'; ?>
+  </a>
 </main>
 
 <script type="module">
 import { init, openModule } from "https://beautyprosoftware.com/online-booking-init/index.js";
 init({
-  database: 688499
+  database: 688499,
+  elementId: 'request-form-btn'
 });
 document.getElementById('request-form-btn').addEventListener('click', function (e) {
   e.preventDefault();

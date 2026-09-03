@@ -135,9 +135,168 @@
   top: 347.3282cqw;
   width: 7.4427cqw;
   height: 7.4427cqw;
+  color: #000;
 }
 
-.page-newclient .icon-instagram img {
+.page-newclient .icon-whatsapp {
+  display: none;
+  color: #000;
+}
+
+.page-newclient .icon-instagram svg,
+.page-newclient .icon-whatsapp svg {
   width: 100%;
   height: 100%;
+}
+
+/* ---- Tablet (own design, 768–1279px) ----
+   Uses normal document flow instead of absolute positioning: at this
+   breakpoint the text reflows to an unpredictable height, so elements
+   stack naturally rather than relying on fixed top offsets. */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .page-newclient {
+    display: block;
+    text-align: center;
+    aspect-ratio: auto;
+    max-width: none;
+    padding: 6cqw 15cqw 8cqw;
+  }
+
+  .page-newclient .el {
+    position: static;
+  }
+
+  .page-newclient .logo {
+    display: block;
+    width: 28cqw;
+    height: auto;
+    margin: 0 auto 5cqw;
+  }
+
+  .page-newclient .heading {
+    width: 100%;
+    font-size: 3cqw;
+    margin: 0 0 4cqw;
+  }
+
+  .page-newclient .intro {
+    width: 100%;
+    font-size: 1.9cqw;
+    line-height: 1.55;
+    margin: 0 0 6cqw;
+  }
+
+  .page-newclient .booking-policy-title {
+    width: 100%;
+    font-size: 3cqw;
+    margin: 0 0 4cqw;
+  }
+
+  .page-newclient .policy-list {
+    width: 100%;
+    font-size: 1.8cqw;
+    margin: 0 0 6cqw;
+  }
+
+  .page-newclient .request-form {
+    display: inline-flex;
+    width: 22cqw;
+    height: 6cqw;
+    font-size: 1.9cqw;
+    margin: 0 0 6cqw;
+  }
+
+  .page-newclient .legal-links {
+    display: inline-flex;
+    width: auto;
+    gap: 2.5cqw;
+    font-size: 1.7cqw;
+    vertical-align: middle;
+    margin: 0 2.5cqw 0 0;
+  }
+
+  .page-newclient .icon-instagram,
+  .page-newclient .icon-whatsapp {
+    display: inline-flex;
+    width: 3.6cqw;
+    height: 3.6cqw;
+    vertical-align: middle;
+    margin: 0 0.8cqw;
+  }
+}
+
+/* ---- Desktop (from Figma "MacBook Pro 16\" - 3", 1280px+) ---- */
+@media (min-width: 1280px) {
+  .page-newclient {
+    aspect-ratio: 1728 / 1301;
+    max-width: 1920px;
+  }
+
+  .page-newclient .logo {
+    left: 38.0208cqw;
+    top: 2.9514cqw;
+    width: 23.9005cqw;
+    height: 6.5820cqw;
+  }
+
+  .page-newclient .heading {
+    left: 41.0880cqw;
+    top: 14.4676cqw;
+    width: 17.8241cqw;
+    font-size: 1.3889cqw;
+    white-space: nowrap;
+  }
+
+  .page-newclient .intro {
+    left: 36.9792cqw;
+    top: 18.4028cqw;
+    width: 26.5046cqw;
+    font-size: 0.9259cqw;
+  }
+
+  .page-newclient .booking-policy-title {
+    left: 41.0880cqw;
+    top: 37.7315cqw;
+    width: 17.8241cqw;
+    font-size: 1.3889cqw;
+    white-space: nowrap;
+  }
+
+  .page-newclient .policy-list {
+    left: 36.9792cqw;
+    top: 40.8565cqw;
+    width: 26.5046cqw;
+    font-size: 0.8681cqw;
+  }
+
+  .page-newclient .request-form {
+    left: 43.75cqw;
+    top: 63.6574cqw;
+    width: 12.4421cqw;
+    height: 3.8773cqw;
+    font-size: 1.1574cqw;
+  }
+
+  .page-newclient .legal-links {
+    left: 36.5162cqw;
+    top: 72.0486cqw;
+    width: 15.7407cqw;
+    font-size: 0.9259cqw;
+  }
+
+  .page-newclient .icon-instagram {
+    display: block;
+    left: 56.3657cqw;
+    top: 71.3542cqw;
+    width: 2.5463cqw;
+    height: 2.4884cqw;
+  }
+
+  .page-newclient .icon-whatsapp {
+    display: block;
+    left: 60.8218cqw;
+    top: 71.2963cqw;
+    width: 2.6042cqw;
+    height: 2.6042cqw;
+  }
 }

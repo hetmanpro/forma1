@@ -33,6 +33,7 @@
   top: 36.8957cqw;
   width: 30.7888cqw;
   height: 11.7048cqw;
+  margin: 0;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 4.5802cqw;
   line-height: 1.2;
@@ -112,4 +113,151 @@
 .page-home .icon-whatsapp svg {
   width: 100%;
   height: 100%;
+}
+
+/* ---- Tablet (own design, 768–1279px) ---- */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .page-home {
+    aspect-ratio: 1024 / 1040;
+    max-width: none;
+  }
+
+  .page-home .bg-photo {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .page-home .logo {
+    left: 33cqw;
+    top: 6.5cqw;
+    width: 34cqw;
+    height: 9.1cqw;
+  }
+
+  .page-home .opening-date {
+    left: 30cqw;
+    top: 23cqw;
+    width: 40cqw;
+    height: auto;
+    font-size: 3.1cqw;
+  }
+
+  .page-home .actions {
+    left: 22.5cqw;
+    top: 61cqw;
+    width: 55cqw;
+    height: 9cqw;
+  }
+
+  .page-home .btn {
+    width: 26cqw;
+    height: 9cqw;
+    font-size: 2.6cqw;
+  }
+
+  .page-home .address {
+    left: 27.5cqw;
+    top: 73cqw;
+    width: 45cqw;
+    height: auto;
+    font-size: 2.2cqw;
+  }
+
+  .page-home .legal-links {
+    left: 15cqw;
+    top: 86.5cqw;
+    width: 40cqw;
+    height: auto;
+    font-size: 2cqw;
+  }
+
+  .page-home .icon-instagram {
+    left: 67cqw;
+    top: 85cqw;
+    width: 4.8cqw;
+    height: 4.8cqw;
+  }
+
+  .page-home .icon-whatsapp {
+    left: 75cqw;
+    top: 84.7cqw;
+    width: 5cqw;
+    height: 5cqw;
+  }
+}
+
+/* ---- Desktop (from Figma "MacBook Pro 16\" - 1", 1280px+) ---- */
+@media (min-width: 1280px) {
+  .page-home {
+    aspect-ratio: 1728 / 1117;
+    max-width: 1920px;
+  }
+
+  .page-home .bg-photo {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .page-home .logo {
+    left: 38.0787cqw;
+    top: 3.0093cqw;
+    width: 23.9005cqw;
+    height: 6.5820cqw;
+  }
+
+  .page-home .opening-date {
+    left: 45.4282cqw;
+    top: 11.1690cqw;
+    width: 9.2014cqw;
+    height: auto;
+    font-size: 1.3889cqw;
+    white-space: nowrap;
+  }
+
+  .page-home .actions {
+    left: 39.4676cqw;
+    top: 48.4954cqw;
+    width: 21.0648cqw;
+    height: 3.8773cqw;
+  }
+
+  .page-home .btn {
+    width: 9.35cqw;
+    height: 3.8773cqw;
+    font-size: 1.1574cqw;
+  }
+
+  .page-home .address {
+    left: 42.3611cqw;
+    top: 54.1088cqw;
+    width: 15.3356cqw;
+    height: auto;
+    font-size: 1.0417cqw;
+  }
+
+  .page-home .legal-links {
+    left: 36.5741cqw;
+    top: 61.0532cqw;
+    width: 15.7407cqw;
+    height: auto;
+    font-size: 0.9259cqw;
+  }
+
+  .page-home .icon-instagram {
+    left: 56.3657cqw;
+    top: 60.3588cqw;
+    width: 2.5463cqw;
+    height: 2.4884cqw;
+  }
+
+  .page-home .icon-whatsapp {
+    left: 60.8218cqw;
+    top: 60.3009cqw;
+    width: 2.6042cqw;
+    height: 2.6042cqw;
+  }
 }

@@ -114,3 +114,84 @@
   color: #666;
   text-decoration: underline;
 }
+
+/* ---- Tablet (own design, 768–1279px) ---- */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .page-legal {
+    max-width: none;
+  }
+
+  .page-legal .logo {
+    width: 30cqw;
+    margin: 6cqw auto 0;
+  }
+
+  .page-legal .content {
+    width: 62cqw;
+    margin: 6cqw auto 0;
+    font-size: 1.9cqw;
+  }
+
+  .page-legal .content h1,
+  .page-legal .content h2 {
+    font-size: 3.4cqw;
+  }
+
+  .page-legal .content h3 {
+    font-size: 2.3cqw;
+  }
+
+  .page-legal .content dt {
+    font-size: 2.1cqw;
+  }
+
+  .page-legal .content dd {
+    font-size: 1.9cqw;
+  }
+
+  .page-legal .back-link {
+    width: 62cqw;
+    font-size: 1.7cqw;
+  }
+}
+
+/* ---- Desktop (from Figma "IMPRESSUM", 1280px+) ---- */
+@media (min-width: 1280px) {
+  .page-legal {
+    max-width: 1920px;
+  }
+
+  .page-legal .logo {
+    width: 18.9105cqw;
+    margin: 8.5069cqw auto 0;
+  }
+
+  .page-legal .content {
+    width: 68.5185cqw;
+    margin: 18.6921cqw 0 0 19.2708cqw;
+    font-size: 1.0417cqw;
+  }
+
+  .page-legal .content h1,
+  .page-legal .content h2 {
+    font-size: 1.8519cqw;
+  }
+
+  .page-legal .content h3 {
+    font-size: 1.2731cqw;
+  }
+
+  .page-legal .content dt {
+    font-size: 1.1574cqw;
+  }
+
+  .page-legal .content dd {
+    font-size: 1.0417cqw;
+  }
+
+  .page-legal .back-link {
+    width: 68.5185cqw;
+    margin: 3em 0 0 19.2708cqw;
+    font-size: 0.9259cqw;
+  }
+}

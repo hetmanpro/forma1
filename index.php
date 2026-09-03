@@ -7,7 +7,10 @@ require __DIR__ . '/includes/header.php';
 ?>
 <main class="screen page-home">
   <div class="el bg-photo">
-    <img src="/assets/images/home-bg.jpg" alt="FORMA salon">
+    <picture>
+      <source media="(min-width: 768px)" srcset="/assets/images/home-bg-desktop.jpg">
+      <img src="/assets/images/home-bg.jpg" alt="FORMA salon">
+    </picture>
   </div>
 
   <div class="el logo">
