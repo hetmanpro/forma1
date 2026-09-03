@@ -130,61 +130,61 @@
   }
 
   .page-home .logo {
-    left: 33cqw;
-    top: 6.5cqw;
-    width: 34cqw;
-    height: 9.1cqw;
+    left: 35cqw;
+    top: 6cqw;
+    width: 30cqw;
+    height: 8cqw;
   }
 
   .page-home .opening-date {
     left: 30cqw;
-    top: 23cqw;
+    top: 21cqw;
     width: 40cqw;
     height: auto;
-    font-size: 3.1cqw;
+    font-size: 2.6cqw;
   }
 
   .page-home .actions {
-    left: 22.5cqw;
-    top: 61cqw;
-    width: 55cqw;
-    height: 9cqw;
+    left: 24cqw;
+    top: 65cqw;
+    width: 52cqw;
+    height: 7.6cqw;
   }
 
   .page-home .btn {
-    width: 26cqw;
-    height: 9cqw;
-    font-size: 2.6cqw;
+    width: 24cqw;
+    height: 7.6cqw;
+    font-size: 2.2cqw;
   }
 
   .page-home .address {
     left: 27.5cqw;
-    top: 73cqw;
+    top: 76cqw;
     width: 45cqw;
     height: auto;
-    font-size: 2.2cqw;
+    font-size: 1.9cqw;
   }
 
   .page-home .legal-links {
-    left: 15cqw;
-    top: 86.5cqw;
-    width: 40cqw;
+    left: 18cqw;
+    top: 88cqw;
+    width: 36cqw;
     height: auto;
-    font-size: 2cqw;
+    font-size: 1.7cqw;
   }
 
   .page-home .icon-instagram {
-    left: 67cqw;
-    top: 85cqw;
-    width: 4.8cqw;
-    height: 4.8cqw;
+    left: 68cqw;
+    top: 86.7cqw;
+    width: 4cqw;
+    height: 4cqw;
   }
 
   .page-home .icon-whatsapp {
-    left: 75cqw;
-    top: 84.7cqw;
-    width: 5cqw;
-    height: 5cqw;
+    left: 74.5cqw;
+    top: 86.4cqw;
+    width: 4.2cqw;
+    height: 4.2cqw;
   }
 }
 
@@ -196,10 +196,14 @@
   }
 
   .page-home .bg-photo {
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    left: -25.6366cqw;
+    top: 0cqw;
+    width: 163.9468cqw;
+    height: 71.5856cqw;
+  }
+
+  .page-home .bg-photo img {
+    object-fit: fill;
   }
 
   .page-home .logo {
