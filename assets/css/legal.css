@@ -76,6 +76,31 @@
   font-weight: 700;
 }
 
+.page-legal .content ul {
+  margin: 0 0 1.6em 0;
+  padding-left: 1.1em;
+  list-style: none;
+}
+
+.page-legal .content ul:last-child {
+  margin-bottom: 0;
+}
+
+.page-legal .content li {
+  position: relative;
+  margin: 0 0 0.4em 0;
+}
+
+.page-legal .content li:last-child {
+  margin-bottom: 0;
+}
+
+.page-legal .content li::before {
+  content: '\2022';
+  position: absolute;
+  left: -1.1em;
+}
+
 .page-legal .content a {
   text-decoration: underline;
 }
