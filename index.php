@@ -7,9 +7,17 @@ require __DIR__ . '/includes/header.php';
 ?>
 <script>
 (function () {
+  // Two Figma mobile designs exist: the spacious one (393x852) and a
+  // dedicated compact one (393x650, frame "iPhone 16 - 25") built for
+  // real phones whose visible Safari viewport is shorter than 852.
+  // Switch to the compact design once the real measured height drops
+  // below the midpoint between the two, so neither design ever needs
+  // to crop — each is shown at (or scaled from) its own true size.
+  var COMPACT_THRESHOLD = (852 + 650) / 2; // 751
   function setRealVh() {
     var h = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
     document.documentElement.style.setProperty('--vh100', h + 'px');
+    document.documentElement.classList.toggle('compact-mobile', h < COMPACT_THRESHOLD);
   }
   setRealVh();
   window.addEventListener('resize', setRealVh);
@@ -39,7 +47,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 
   <a class="el address" href="<?= htmlspecialchars($config['maps_url']) ?>" target="_blank" rel="noopener">
-    Nordbahnstrasse 15, 1020<br>Vienna
+    Nordbahnstrasse 15, 1020<br class="address-break"><span class="address-city">Vienna</span>
   </a>
 
   <nav class="el legal-links">
