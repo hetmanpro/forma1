@@ -5,6 +5,20 @@ $pageCss = ['/assets/css/home.css'];
 $bodyClass = '';
 require __DIR__ . '/includes/header.php';
 ?>
+<script>
+(function () {
+  function setRealVh() {
+    var h = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+    document.documentElement.style.setProperty('--vh100', h + 'px');
+  }
+  setRealVh();
+  window.addEventListener('resize', setRealVh);
+  window.addEventListener('orientationchange', setRealVh);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', setRealVh);
+  }
+})();
+</script>
 <main class="screen page-home">
   <div class="el bg-photo">
     <picture>
