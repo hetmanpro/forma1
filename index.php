@@ -7,13 +7,13 @@ require __DIR__ . '/includes/header.php';
 ?>
 <script>
 (function () {
-  // Two Figma mobile designs exist: the spacious one (393x852) and a
-  // dedicated compact one (393x650, frame "iPhone 16 - 25") built for
-  // real phones whose visible Safari viewport is shorter than 852.
-  // Switch to the compact design once the real measured height drops
-  // below the midpoint between the two, so neither design ever needs
-  // to crop — each is shown at (or scaled from) its own true size.
-  var COMPACT_THRESHOLD = (852 + 650) / 2; // 751
+  // Two mobile designs exist: the spacious one (393x852, from Figma)
+  // and a compact one (393x700, adapted from Figma's "iPhone 16 - 25"
+  // frame with more top/bottom breathing room) for real phones whose
+  // visible Safari viewport is shorter than 852. Switch to compact
+  // once the real measured height drops below the midpoint between
+  // the two, so neither design ever needs to crop.
+  var COMPACT_THRESHOLD = (852 + 700) / 2; // 776
   function setRealVh() {
     var h = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
     document.documentElement.style.setProperty('--vh100', h + 'px');

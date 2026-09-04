@@ -142,23 +142,22 @@
 /* ---- Compact mobile (from Figma frame "iPhone 16 - 25", 393x650) ----
    Used instead of the spacious 393x852 design when the real measured
    viewport height is short (real phones with Safari's toolbars taking
-   a bigger bite). This design was purpose-built at 650px tall, so it
-   needs no cropping at all — plain top-anchored positions, sized with
-   a normal contain-fit (shrinks width only in the rare case the real
-   height is even shorter than 650). The `html.compact-mobile` class is
-   set by the script above based on the live-measured height. */
+   a bigger bite). Canvas grown from Figma's 650 to 700px and the photo
+   + buttons/address/footer cluster shifted down 50px together (logo/
+   heading stay put) per feedback: more air above the head, buttons
+   still correctly seated on the jacket since they moved with it. */
 @media (max-width: 767px) {
   html.compact-mobile .page-home {
-    aspect-ratio: 393 / 650;
-    width: min(100%, calc(100vh * 0.6046));
-    width: min(100%, calc(100svh * 0.6046));
-    width: min(100%, calc(var(--vh100, 100svh) * 0.6046));
+    aspect-ratio: 393 / 700;
+    width: min(100%, calc(100vh * 0.5614));
+    width: min(100%, calc(100svh * 0.5614));
+    width: min(100%, calc(var(--vh100, 100svh) * 0.5614));
     height: auto;
   }
 
   html.compact-mobile .page-home .bg-photo {
     left: -15.5216cqw;
-    top: -13.4860cqw;
+    top: -0.7634cqw;
     bottom: auto;
     width: 132.1159cqw;
     height: 203.5624cqw;
@@ -179,7 +178,7 @@
   }
 
   html.compact-mobile .page-home .actions {
-    top: 123.9186cqw;
+    top: 136.6412cqw;
     bottom: auto;
     width: 69.9746cqw;
     height: 13.4860cqw;
@@ -191,7 +190,7 @@
 
   html.compact-mobile .page-home .address {
     left: 16.0305cqw;
-    top: 141.9847cqw;
+    top: 154.7074cqw;
     bottom: auto;
     width: 67.6845cqw;
     height: auto;
@@ -209,7 +208,7 @@
 
   html.compact-mobile .page-home .legal-links {
     left: 6.8702cqw;
-    top: 157.2519cqw;
+    top: 169.9746cqw;
     bottom: auto;
     width: 55.9796cqw;
     font-size: 3.3079cqw;
@@ -218,13 +217,13 @@
 
   html.compact-mobile .page-home .icon-instagram {
     left: 72.5191cqw;
-    top: 154.1985cqw;
+    top: 166.9211cqw;
     bottom: auto;
   }
 
   html.compact-mobile .page-home .icon-whatsapp {
     left: 85.7506cqw;
-    top: 153.9440cqw;
+    top: 166.6667cqw;
     bottom: auto;
   }
 }
