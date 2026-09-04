@@ -2,7 +2,7 @@
 $config = require __DIR__ . '/includes/config.php';
 $pageTitle = 'FORMA — Coming Soon, Vienna';
 $pageCss = ['/assets/css/home.css'];
-$bodyClass = '';
+$bodyClass = 'body-home';
 require __DIR__ . '/includes/header.php';
 ?>
 <script>

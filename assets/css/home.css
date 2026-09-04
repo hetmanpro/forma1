@@ -1,14 +1,36 @@
 .page-home {
   aspect-ratio: 393 / 852;
-  width: min(100%, calc(100vh * 0.4613));
-  width: min(100%, calc(100svh * 0.4613));
-  width: min(100%, calc(var(--vh100, 100svh) * 0.4613));
+  /* Full width whenever that only costs a modest amount of top-crop
+     (e.g. the real height lost to Safari's toolbars) — but if the
+     viewport is short relative to its width (a rotated/landscape
+     phone), cap the crop at ~28% and shrink the width the rest of the
+     way instead, rather than cropping away most of the photo. */
+  width: min(100%, calc(100vh * 0.4613 * 1.4));
+  width: min(100%, calc(100svh * 0.4613 * 1.4));
+  width: min(100%, calc(var(--vh100, 100svh) * 0.4613 * 1.4));
   background: #000;
+}
+
+/* Mobile + tablet: anchor the whole composition to the bottom of the
+   real visible viewport and let any excess height get cropped off the
+   TOP instead of shrinking the width (which caused side letterboxing).
+   The photo and the buttons/address/footer row are positioned with
+   `bottom` (not `top`) below, so they stay pinned to the bottom edge
+   and to each other regardless of how much gets cropped above them. */
+@media (max-width: 1279px) {
+  body.body-home {
+    height: 100vh;
+    height: 100svh;
+    height: var(--vh100, 100svh);
+    min-height: 0;
+    overflow: hidden;
+    align-items: flex-end;
+  }
 }
 
 .page-home .bg-photo {
   left: -32.0611cqw;
-  top: -2.7990cqw;
+  bottom: -33.0789cqw;
   width: 168.4478cqw;
   height: 252.6718cqw;
 }
@@ -47,7 +69,7 @@
 
 .page-home .actions {
   left: 14.5038cqw;
-  top: 168.1934cqw;
+  bottom: 35.1145cqw;
   width: 69.9745cqw;
   height: 13.4860cqw;
   display: flex;
@@ -69,7 +91,7 @@
 
 .page-home .address {
   left: 24.1730cqw;
-  top: 188.5496cqw;
+  bottom: 17.5573cqw;
   width: 52.4173cqw;
   height: 10.6870cqw;
   font-family: 'Space Mono', monospace;
@@ -82,7 +104,7 @@
 
 .page-home .legal-links {
   left: 7.6336cqw;
-  top: 207.8880cqw;
+  bottom: 4.5802cqw;
   width: 55.9796cqw;
   height: 4.3257cqw;
   display: flex;
@@ -98,7 +120,7 @@
 
 .page-home .icon-instagram {
   left: 73.2824cqw;
-  top: 204.8346cqw;
+  bottom: 4.5165cqw;
   width: 7.4427cqw;
   height: 7.4427cqw;
   color: #fff;
@@ -106,7 +128,7 @@
 
 .page-home .icon-whatsapp {
   left: 86.5140cqw;
-  top: 204.5802cqw;
+  bottom: 4.5802cqw;
   width: 7.6336cqw;
   height: 7.6336cqw;
   color: #fff;
@@ -122,15 +144,15 @@
 @media (min-width: 768px) and (max-width: 1279px) {
   .page-home {
     aspect-ratio: 768 / 1269;
-    width: min(100%, calc(100vh * 0.6052));
-    width: min(100%, calc(100svh * 0.6052));
-    width: min(100%, calc(var(--vh100, 100svh) * 0.6052));
     max-width: none;
+    width: min(100%, calc(100vh * 0.6052 * 1.4));
+    width: min(100%, calc(100svh * 0.6052 * 1.4));
+    width: min(100%, calc(var(--vh100, 100svh) * 0.6052 * 1.4));
   }
 
   .page-home .bg-photo {
     left: -133.9844cqw;
-    top: 0cqw;
+    bottom: -5.7292cqw;
     width: 391.5365cqw;
     height: 170.9635cqw;
   }
@@ -157,7 +179,7 @@
 
   .page-home .actions {
     left: 26.3021cqw;
-    top: 122.7865cqw;
+    bottom: 33.7240cqw;
     width: 47.3958cqw;
     height: 8.7240cqw;
   }
@@ -170,7 +192,7 @@
 
   .page-home .address {
     left: 32.8125cqw;
-    top: 138.9323cqw;
+    bottom: 19.2708cqw;
     width: 34.5052cqw;
     height: auto;
     font-size: 2.3438cqw;
@@ -178,7 +200,7 @@
 
   .page-home .legal-links {
     left: 19.9219cqw;
-    top: 155.0781cqw;
+    bottom: 7.5521cqw;
     width: 35.4167cqw;
     height: auto;
     font-size: 2.0833cqw;
@@ -186,14 +208,14 @@
 
   .page-home .icon-instagram {
     left: 64.4531cqw;
-    top: 153.5156cqw;
+    bottom: 6.1198cqw;
     width: 5.7292cqw;
     height: 5.5990cqw;
   }
 
   .page-home .icon-whatsapp {
     left: 74.4792cqw;
-    top: 153.3854cqw;
+    bottom: 5.9896cqw;
     width: 5.8594cqw;
     height: 5.8594cqw;
   }
