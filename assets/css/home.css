@@ -1,30 +1,29 @@
 .page-home {
   aspect-ratio: 393 / 852;
-  /* Full width whenever that only costs a modest amount of top-crop
-     (e.g. the real height lost to Safari's toolbars) — but if the
-     viewport is short relative to its width (a rotated/landscape
-     phone), cap the crop at ~28% and shrink the width the rest of the
-     way instead, rather than cropping away most of the photo. */
-  width: min(100%, calc(100vh * 0.4613 * 1.4));
-  width: min(100%, calc(100svh * 0.4613 * 1.4));
-  width: min(100%, calc(var(--vh100, 100svh) * 0.4613 * 1.4));
   background: #000;
 }
 
-/* Mobile + tablet: anchor the whole composition to the bottom of the
-   real visible viewport and let any excess height get cropped off the
-   TOP instead of shrinking the width (which caused side letterboxing).
-   The photo and the buttons/address/footer row are positioned with
-   `bottom` (not `top`) below, so they stay pinned to the bottom edge
-   and to each other regardless of how much gets cropped above them. */
+/* Mobile + tablet: the container is sized to EXACTLY match the real
+   visible viewport (not the design's fixed aspect-ratio), so anything
+   positioned normally within it — the logo, "COMING SOON", and the
+   buttons/address/footer row (the last three anchored with `bottom`
+   instead of `top` below, so they stay pinned to the bottom and to
+   each other) — is always fully on-screen and never clipped.
+   Only the background photo is deliberately oversized (see .bg-photo
+   below) and gets cropped by this container's own overflow:hidden —
+   full width whenever that only costs a modest top-crop (e.g. the
+   real height lost to Safari's toolbars), capped at ~28% before
+   falling back to a modest width-shrink on extreme (landscape) shapes
+   rather than cropping away most of the photo. */
 @media (max-width: 1279px) {
-  body.body-home {
+  .page-home {
+    aspect-ratio: auto;
+    width: min(100%, calc(100vh * 0.4613 * 1.4));
+    width: min(100%, calc(100svh * 0.4613 * 1.4));
+    width: min(100%, calc(var(--vh100, 100svh) * 0.4613 * 1.4));
     height: 100vh;
     height: 100svh;
     height: var(--vh100, 100svh);
-    min-height: 0;
-    overflow: hidden;
-    align-items: flex-end;
   }
 }
 
@@ -143,11 +142,14 @@
 /* ---- Tablet (from Figma frame "tablet", 768px–1279px) ---- */
 @media (min-width: 768px) and (max-width: 1279px) {
   .page-home {
-    aspect-ratio: 768 / 1269;
+    aspect-ratio: auto;
     max-width: none;
     width: min(100%, calc(100vh * 0.6052 * 1.4));
     width: min(100%, calc(100svh * 0.6052 * 1.4));
     width: min(100%, calc(var(--vh100, 100svh) * 0.6052 * 1.4));
+    height: 100vh;
+    height: 100svh;
+    height: var(--vh100, 100svh);
   }
 
   .page-home .bg-photo {
