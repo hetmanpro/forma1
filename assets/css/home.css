@@ -139,26 +139,31 @@
   height: 100%;
 }
 
-/* ---- Compact mobile (from Figma frame "iPhone 16 - 25", 393x650) ----
+/* ---- Compact mobile (adapted from Figma frame "iPhone 16 - 25") ----
    Used instead of the spacious 393x852 design when the real measured
-   viewport height is short (real phones with Safari's toolbars taking
-   a bigger bite). Canvas grown from Figma's 650 to 700px and the photo
-   + buttons/address/footer cluster shifted down 50px together (logo/
-   heading stay put) per feedback: more air above the head, buttons
-   still correctly seated on the jacket since they moved with it. */
+   viewport height is short. Full width whenever that only costs a
+   modest top-crop (same "prefer no side bars" approach as the
+   spacious design), capped before falling back to a width-shrink —
+   which is what was showing as black side bars on shorter real
+   phones. The photo and the buttons/address/footer cluster are
+   bottom-anchored so they stay pinned together and any crop lands on
+   the empty space above the head, not on them. Logo/heading stay
+   top-anchored so they're never clipped. */
 @media (max-width: 767px) {
   html.compact-mobile .page-home {
-    aspect-ratio: 393 / 700;
-    width: min(100%, calc(100vh * 0.5614));
-    width: min(100%, calc(100svh * 0.5614));
-    width: min(100%, calc(var(--vh100, 100svh) * 0.5614));
-    height: auto;
+    aspect-ratio: auto;
+    width: min(100%, calc(100vh * 0.5614 * 1.4));
+    width: min(100%, calc(100svh * 0.5614 * 1.4));
+    width: min(100%, calc(var(--vh100, 100svh) * 0.5614 * 1.4));
+    height: 100vh;
+    height: 100svh;
+    height: var(--vh100, 100svh);
   }
 
   html.compact-mobile .page-home .bg-photo {
     left: -15.5216cqw;
-    top: -0.7634cqw;
-    bottom: auto;
+    top: auto;
+    bottom: -24.6820cqw;
     width: 132.1159cqw;
     height: 203.5624cqw;
   }
@@ -178,8 +183,8 @@
   }
 
   html.compact-mobile .page-home .actions {
-    top: 136.6412cqw;
-    bottom: auto;
+    top: auto;
+    bottom: 27.9898cqw;
     width: 69.9746cqw;
     height: 13.4860cqw;
   }
@@ -190,8 +195,8 @@
 
   html.compact-mobile .page-home .address {
     left: 16.0305cqw;
-    top: 154.7074cqw;
-    bottom: auto;
+    top: auto;
+    bottom: 18.0661cqw;
     width: 67.6845cqw;
     height: auto;
     font-size: 3.5623cqw;
@@ -208,8 +213,8 @@
 
   html.compact-mobile .page-home .legal-links {
     left: 6.8702cqw;
-    top: 169.9746cqw;
-    bottom: auto;
+    top: auto;
+    bottom: 3.8167cqw;
     width: 55.9796cqw;
     font-size: 3.3079cqw;
     color: #c1c1c1;
@@ -217,14 +222,14 @@
 
   html.compact-mobile .page-home .icon-instagram {
     left: 72.5191cqw;
-    top: 166.9211cqw;
-    bottom: auto;
+    top: auto;
+    bottom: 3.7532cqw;
   }
 
   html.compact-mobile .page-home .icon-whatsapp {
     left: 85.7506cqw;
-    top: 166.6667cqw;
-    bottom: auto;
+    top: auto;
+    bottom: 3.8167cqw;
   }
 }
 
