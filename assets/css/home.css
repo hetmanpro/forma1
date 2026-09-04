@@ -116,10 +116,87 @@
   height: 100%;
 }
 
-/* ---- Tablet + Desktop (from Figma "MacBook Pro 16\" - 1", 768px+) ----
-   Tablet uses the exact same layout, positions, and sizes as desktop —
-   just triggered at a lower width — rather than a separate design. */
-@media (min-width: 768px) {
+/* ---- Tablet (from Figma frame "tablet", 768px–1279px) ---- */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .page-home {
+    aspect-ratio: 768 / 1269;
+    width: min(100%, calc(100vh * 0.6052));
+    max-width: none;
+  }
+
+  .page-home .bg-photo {
+    left: -133.9844cqw;
+    top: 0cqw;
+    width: 391.5365cqw;
+    height: 170.9635cqw;
+  }
+
+  .page-home .bg-photo img {
+    object-fit: fill;
+  }
+
+  .page-home .logo {
+    left: 23.1771cqw;
+    top: 8.4635cqw;
+    width: 53.7760cqw;
+    height: 14.8109cqw;
+  }
+
+  .page-home .opening-date {
+    left: 39.7135cqw;
+    top: 26.8229cqw;
+    width: 20.7031cqw;
+    height: auto;
+    font-size: 3.1250cqw;
+    white-space: nowrap;
+  }
+
+  .page-home .actions {
+    left: 26.3021cqw;
+    top: 122.7865cqw;
+    width: 47.3958cqw;
+    height: 8.7240cqw;
+  }
+
+  .page-home .btn {
+    width: 21.0286cqw;
+    height: 8.6589cqw;
+    font-size: 2.6042cqw;
+  }
+
+  .page-home .address {
+    left: 32.8125cqw;
+    top: 138.9323cqw;
+    width: 34.5052cqw;
+    height: auto;
+    font-size: 2.3438cqw;
+  }
+
+  .page-home .legal-links {
+    left: 19.9219cqw;
+    top: 155.0781cqw;
+    width: 35.4167cqw;
+    height: auto;
+    font-size: 2.0833cqw;
+  }
+
+  .page-home .icon-instagram {
+    left: 64.4531cqw;
+    top: 153.5156cqw;
+    width: 5.7292cqw;
+    height: 5.5990cqw;
+  }
+
+  .page-home .icon-whatsapp {
+    left: 74.4792cqw;
+    top: 153.3854cqw;
+    width: 5.8594cqw;
+    height: 5.8594cqw;
+  }
+}
+
+/* ---- Desktop (from Figma "MacBook Pro 16\" - 1", 1280px+) ---- */
+@media (min-width: 1280px) {
   .page-home {
     aspect-ratio: 1728 / 1117;
     width: min(100%, calc(100vh * 1.547), 1920px);
