@@ -117,12 +117,15 @@
 }
 
 /* ---- Tablet (own design, 768–1279px) ----
-   Photo is shown full-bleed via object-fit:cover on a box much taller
-   (relative to its width) than the source photo's own aspect ratio, so
-   cover always shows the photo's FULL height with the subject (which
-   is horizontally centered in the source) cropped symmetrically. That
-   makes every vertical position below a simple fraction of the frame
-   height, independent of exactly how tall the tablet canvas is. */
+   The photo is positioned with exact offsets (not a generic centered
+   "cover") because the subject is NOT exactly centered in the source
+   photo — pixel analysis found the hairline sitting at 47.12% of the
+   source width, not 50%. At this breakpoint's tight horizontal crop,
+   that small 2.9% error gets magnified into a visible ~9% offset, so
+   the crop is deliberately built around the measured 47.12% point.
+   Vertical positions come from a brightness scan finding the actual
+   neck-to-jacket transition, so the buttons/address/footer block sits
+   on real jacket rather than an estimate. */
 @media (min-width: 768px) and (max-width: 1279px) {
   .page-home {
     aspect-ratio: 3 / 4;
@@ -135,6 +138,16 @@
     top: 0;
     width: 100%;
     height: 100%;
+  }
+
+  .page-home .bg-photo img {
+    width: 333.3333cqw;
+    height: 145.5078cqw;
+    max-width: none;
+    object-fit: fill;
+    position: relative;
+    left: -107.0667cqw;
+    top: 0;
   }
 
   .page-home .logo {
@@ -154,7 +167,7 @@
 
   .page-home .actions {
     left: 24cqw;
-    top: 85.3cqw;
+    top: 85.3678cqw;
     width: 52cqw;
     height: 10cqw;
   }
@@ -167,7 +180,7 @@
 
   .page-home .address {
     left: 27.5cqw;
-    top: 99.8cqw;
+    top: 107.7809cqw;
     width: 45cqw;
     height: auto;
     font-size: 1.9cqw;
@@ -175,7 +188,7 @@
 
   .page-home .legal-links {
     left: 18cqw;
-    top: 115.5cqw;
+    top: 125.1940cqw;
     width: 36cqw;
     height: auto;
     font-size: 1.7cqw;
@@ -183,14 +196,14 @@
 
   .page-home .icon-instagram {
     left: 68cqw;
-    top: 113.8cqw;
+    top: 123.4940cqw;
     width: 4cqw;
     height: 4cqw;
   }
 
   .page-home .icon-whatsapp {
     left: 74.5cqw;
-    top: 113.4cqw;
+    top: 123.0940cqw;
     width: 4.2cqw;
     height: 4.2cqw;
   }
