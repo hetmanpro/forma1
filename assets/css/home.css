@@ -233,14 +233,22 @@
   }
 }
 
-/* ---- Tablet (from Figma frame "tablet", 768px–1279px) ---- */
+/* ---- Tablet (from Figma frame "tablet", 768px–1279px) ----
+   Crop tolerance capped much lower than mobile's (1.11x = max ~10%
+   crop, vs mobile's 1.4x = ~28%): the logo/heading are top-anchored
+   while the photo is bottom-anchored, and at this design's tall
+   768:1269 ratio, more than ~10% crop pushes the head up into the
+   logo before the width-shrink fallback would otherwise kick in —
+   verified visually at 768x1100 (head touching logo) and 768x1050
+   (clear overlap). Common iPad sizes (e.g. 768x1024, needing ~19%
+   crop) now get a modest width-shrink instead of that overlap. */
 @media (min-width: 768px) and (max-width: 1279px) {
   .page-home {
     aspect-ratio: auto;
     max-width: none;
-    width: min(100%, calc(100vh * 0.6052 * 1.4));
-    width: min(100%, calc(100svh * 0.6052 * 1.4));
-    width: min(100%, calc(var(--vh100, 100svh) * 0.6052 * 1.4));
+    width: min(100%, calc(100vh * 0.6052 * 1.1111));
+    width: min(100%, calc(100svh * 0.6052 * 1.1111));
+    width: min(100%, calc(var(--vh100, 100svh) * 0.6052 * 1.1111));
     height: 100vh;
     height: 100svh;
     height: var(--vh100, 100svh);

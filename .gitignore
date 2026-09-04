@@ -3,3 +3,4 @@
 _preview_*.html
 *-preview*.png
 .claude/settings.local.json
+.claude/settings.json
