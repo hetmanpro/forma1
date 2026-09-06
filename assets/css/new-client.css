@@ -1,5 +1,5 @@
 .page-newclient {
-  aspect-ratio: 393 / 1413;
+  aspect-ratio: 393 / 1478;
   background: #d9d9d9;
   color: #000;
 }
@@ -152,6 +152,17 @@
   height: 100%;
 }
 
+.page-newclient .back-link {
+  left: 10.8143cqw;
+  top: 362cqw;
+  width: 78.3715cqw;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.3079cqw;
+  text-align: center;
+  color: #666;
+  text-decoration: underline;
+}
+
 /* ---- Tablet (own design, 768–1279px) ----
    Uses normal document flow instead of absolute positioning: at this
    breakpoint the text reflows to an unpredictable height, so elements
@@ -226,12 +237,19 @@
     vertical-align: middle;
     margin: 0 0.8cqw;
   }
+
+  .page-newclient .back-link {
+    display: block;
+    width: 100%;
+    font-size: 1.7cqw;
+    margin: 4cqw 0 0;
+  }
 }
 
 /* ---- Desktop (from Figma "MacBook Pro 16\" - 3", 1280px+) ---- */
 @media (min-width: 1280px) {
   .page-newclient {
-    aspect-ratio: 1728 / 1301;
+    aspect-ratio: 1728 / 1434;
     max-width: 1920px;
   }
 
@@ -301,5 +319,13 @@
     top: 71.2963cqw;
     width: 2.6042cqw;
     height: 2.6042cqw;
+  }
+
+  .page-newclient .back-link {
+    left: 36.9792cqw;
+    top: 77cqw;
+    width: 26.5046cqw;
+    font-size: 0.9259cqw;
+    text-align: center;
   }
 }

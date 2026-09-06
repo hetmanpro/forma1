@@ -139,6 +139,23 @@ $phoneHref = 'tel:+' . $config['whatsapp_e164'];
     <p>FORMA does not use automated decision-making or profiling within the meaning of Article 22 of the GDPR.</p>
   </div>
 
+  <div class="site-footer">
+    <nav class="legal-links">
+      <a href="/legal.php">Legal Notice</a>
+      <a href="/legal.php#terms">Terms &amp; Conditions</a>
+    </nav>
+
+    <div class="social-icons">
+      <a class="icon-instagram" href="<?= htmlspecialchars($config['instagram_url']) ?>" target="_blank" rel="noopener" aria-label="Instagram">
+        <?php include __DIR__ . '/includes/icon-instagram.php'; ?>
+      </a>
+
+      <a class="icon-whatsapp" href="https://wa.me/<?= htmlspecialchars($config['whatsapp_e164']) ?>" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <?php include __DIR__ . '/includes/icon-whatsapp.php'; ?>
+      </a>
+    </div>
+  </div>
+
   <a class="back-link" href="/index.php">&larr; Back to FORMA</a>
 </main>
 <?php require __DIR__ . '/includes/footer.php'; ?>

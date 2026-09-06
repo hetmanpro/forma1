@@ -60,6 +60,8 @@ require __DIR__ . '/includes/header.php';
   <a class="el icon-whatsapp" href="https://wa.me/<?= htmlspecialchars($config['whatsapp_e164']) ?>" target="_blank" rel="noopener" aria-label="WhatsApp">
     <?php include __DIR__ . '/includes/icon-whatsapp.php'; ?>
   </a>
+
+  <a class="el back-link" href="/index.php">&larr; Back to FORMA</a>
 </main>
 
 <script type="module">

@@ -106,10 +106,48 @@
   text-decoration: underline;
 }
 
+.page-legal .site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 78.3715cqw;
+  margin: 4em auto 0;
+}
+
+.page-legal .legal-links {
+  display: flex;
+  gap: 6cqw;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.3079cqw;
+  color: #666;
+}
+
+.page-legal .legal-links a {
+  text-decoration: underline;
+}
+
+.page-legal .social-icons {
+  display: flex;
+  gap: 3cqw;
+}
+
+.page-legal .icon-instagram,
+.page-legal .icon-whatsapp {
+  width: 7.4427cqw;
+  height: 7.4427cqw;
+  color: #000;
+}
+
+.page-legal .icon-instagram svg,
+.page-legal .icon-whatsapp svg {
+  width: 100%;
+  height: 100%;
+}
+
 .page-legal .back-link {
   display: block;
   width: 78.3715cqw;
-  margin: 3em auto 0;
+  margin: 2em auto 0;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 3.3079cqw;
   color: #666;
@@ -148,6 +186,22 @@
 
   .page-legal .content dd {
     font-size: 1.9cqw;
+  }
+
+  .page-legal .site-footer {
+    width: 62cqw;
+    margin: 3em auto 0;
+  }
+
+  .page-legal .legal-links {
+    gap: 3cqw;
+    font-size: 1.7cqw;
+  }
+
+  .page-legal .icon-instagram,
+  .page-legal .icon-whatsapp {
+    width: 3.6cqw;
+    height: 3.6cqw;
   }
 
   .page-legal .back-link {
@@ -190,9 +244,29 @@
     font-size: 1.0417cqw;
   }
 
-  .page-legal .back-link {
+  .page-legal .site-footer {
     width: 68.5185cqw;
     margin: 3em 0 0 19.2708cqw;
+  }
+
+  .page-legal .legal-links {
+    gap: 2cqw;
+    font-size: 0.9259cqw;
+  }
+
+  .page-legal .icon-instagram {
+    width: 2.5463cqw;
+    height: 2.4884cqw;
+  }
+
+  .page-legal .icon-whatsapp {
+    width: 2.6042cqw;
+    height: 2.6042cqw;
+  }
+
+  .page-legal .back-link {
+    width: 68.5185cqw;
+    margin: 2em 0 0 19.2708cqw;
     font-size: 0.9259cqw;
   }
 }
