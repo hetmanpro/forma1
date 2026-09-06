@@ -30,10 +30,14 @@ img, svg {
 .screen {
   position: relative;
   width: 100%;
-  max-width: 393px;
   container-type: inline-size;
   overflow: hidden;
-  /* aspect-ratio is set per page (Figma frame height differs per page) */
+  /* aspect-ratio is set per page (Figma frame height differs per page).
+     No max-width here: phones wider than the 393px Figma frame (e.g.
+     iPhone Pro models at 402px) would otherwise show black bars on
+     each side, since everything inside scales via cqw off .screen's
+     own width anyway. Breakpoints at 768px+ already set their own
+     width/max-width per device class. */
 }
 
 .el {
