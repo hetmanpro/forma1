@@ -6,9 +6,9 @@ $bodyClass = '';
 require __DIR__ . '/includes/header.php';
 ?>
 <main class="screen page-newclient">
-  <div class="el logo">
+  <a class="el logo" href="/index.php">
     <img src="/assets/logo/forma-logo.svg" alt="FORMA">
-  </div>
+  </a>
 
   <h1 class="el heading">HOW TO BECOME A CLIENT</h1>
 

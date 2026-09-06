@@ -1,3 +1,24 @@
+/* ---- Safe-zone / crop-tolerance constants ----
+   Each breakpoint tier below is a "prefer full width, tolerate a
+   capped amount of top-crop before shrinking width" formula:
+     width = min(100%, real-height * ratio * crop-tolerance)
+   `ratio` is the tier's reference design (width/height). `crop-
+   tolerance` is how much taller than the real viewport the design is
+   allowed to render before the excess (always trimmed off the TOP,
+   since the photo and the bottom UI cluster are bottom-anchored
+   together) risks pushing the head up into the logo/heading — see the
+   per-tier comments below for how each cap was derived. Named here so
+   the safe-zone math isn't buried as unlabeled magic numbers. */
+:root {
+  --mobile-spacious-ratio: 0.4613;
+  --mobile-spacious-crop-tolerance: 1.4;
+  --mobile-compact-ratio: 0.5614;
+  --mobile-compact-crop-tolerance: 1.4;
+  --tablet-ratio: 0.6052;
+  --tablet-crop-tolerance: 1.0526;
+  --desktop-ratio: 1.547;
+}
+
 .page-home {
   aspect-ratio: 393 / 852;
   background: #000;
@@ -18,12 +39,21 @@
 @media (max-width: 1279px) {
   .page-home {
     aspect-ratio: auto;
+    --computed-w: min(100vw, 393px, calc(var(--vh100, 100svh) * var(--mobile-spacious-ratio) * var(--mobile-spacious-crop-tolerance)));
     width: min(100%, calc(100vh * 0.4613 * 1.4));
     width: min(100%, calc(100svh * 0.4613 * 1.4));
-    width: min(100%, calc(var(--vh100, 100svh) * 0.4613 * 1.4));
+    width: var(--computed-w);
+    /* Height is capped at what the design's own ratio implies for the
+       resolved width, not just the real viewport height — otherwise a
+       viewport taller/narrower than the 393:852 reference (e.g.
+       412x915) lets the container grow taller than the photo actually
+       covers, leaving a black gap above it instead of the photo
+       properly reaching the top. Any leftover viewport height beyond
+       that shows as plain body background around a correctly
+       proportioned card, instead of stretching the container. */
     height: 100vh;
     height: 100svh;
-    height: var(--vh100, 100svh);
+    height: min(var(--vh100, 100svh), calc(var(--computed-w) / var(--mobile-spacious-ratio)));
   }
 }
 
@@ -59,7 +89,7 @@
   height: 11.7048cqw;
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 4.5802cqw;
+  font-size: min(4.5802cqw, 20px);
   line-height: 1.2;
   text-align: center;
   text-transform: uppercase;
@@ -84,7 +114,7 @@
   align-items: center;
   justify-content: center;
   font-family: 'DM Sans', sans-serif;
-  font-size: 4.0712cqw;
+  font-size: min(4.0712cqw, 18px);
   color: #fff;
 }
 
@@ -94,7 +124,7 @@
   width: 52.4173cqw;
   height: 10.6870cqw;
   font-family: 'Space Mono', monospace;
-  font-size: 3.5623cqw;
+  font-size: min(3.5623cqw, 16px);
   line-height: 1.2;
   text-align: center;
   color: #fff;
@@ -109,7 +139,7 @@
   display: flex;
   justify-content: space-between;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 3.3079cqw;
+  font-size: min(3.3079cqw, 15px);
   color: #fff;
 }
 
@@ -152,12 +182,16 @@
 @media (max-width: 767px) {
   html.compact-mobile .page-home {
     aspect-ratio: auto;
+    --computed-w: min(100vw, 393px, calc(var(--vh100, 100svh) * var(--mobile-compact-ratio) * var(--mobile-compact-crop-tolerance)));
     width: min(100%, calc(100vh * 0.5614 * 1.4));
     width: min(100%, calc(100svh * 0.5614 * 1.4));
-    width: min(100%, calc(var(--vh100, 100svh) * 0.5614 * 1.4));
+    width: var(--computed-w);
+    /* See the spacious tier's comment above — same height cap so a
+       tall/narrow viewport can't stretch the container past what the
+       photo actually covers. */
     height: 100vh;
     height: 100svh;
-    height: var(--vh100, 100svh);
+    height: min(var(--vh100, 100svh), calc(var(--computed-w) / var(--mobile-compact-ratio)));
   }
 
   html.compact-mobile .page-home .bg-photo {
@@ -179,7 +213,7 @@
     top: 22.9008cqw;
     width: 26.9720cqw;
     height: auto;
-    font-size: 4.0712cqw;
+    font-size: min(4.0712cqw, 18px);
   }
 
   html.compact-mobile .page-home .actions {
@@ -190,7 +224,7 @@
   }
 
   html.compact-mobile .page-home .btn {
-    font-size: 4.0712cqw;
+    font-size: min(4.0712cqw, 18px);
   }
 
   html.compact-mobile .page-home .address {
@@ -199,7 +233,7 @@
     bottom: 18.0661cqw;
     width: 67.6845cqw;
     height: auto;
-    font-size: 3.5623cqw;
+    font-size: min(3.5623cqw, 16px);
     white-space: nowrap;
   }
 
@@ -216,7 +250,7 @@
     top: auto;
     bottom: 3.8167cqw;
     width: 55.9796cqw;
-    font-size: 3.3079cqw;
+    font-size: min(3.3079cqw, 15px);
     color: #c1c1c1;
   }
 
@@ -234,24 +268,29 @@
 }
 
 /* ---- Tablet (from Figma frame "tablet", 768px–1279px) ----
-   Crop tolerance capped much lower than mobile's (1.11x = max ~10%
+   Crop tolerance capped much lower than mobile's (1.0526x = max ~5%
    crop, vs mobile's 1.4x = ~28%): the logo/heading are top-anchored
    while the photo is bottom-anchored, and at this design's tall
    768:1269 ratio, more than ~10% crop pushes the head up into the
    logo before the width-shrink fallback would otherwise kick in —
    verified visually at 768x1100 (head touching logo) and 768x1050
-   (clear overlap). Common iPad sizes (e.g. 768x1024, needing ~19%
-   crop) now get a modest width-shrink instead of that overlap. */
+   (clear overlap). The cap is set well below that (~5%, not the max
+   ~10% still-technically-safe figure) so real-world font-rendering/
+   subpixel variance across browsers never eats the margin. Common
+   iPad sizes (e.g. 768x1024, needing ~19% crop) get a modest
+   width-shrink instead of any crop-driven overlap risk. */
 @media (min-width: 768px) and (max-width: 1279px) {
   .page-home {
     aspect-ratio: auto;
     max-width: none;
-    width: min(100%, calc(100vh * 0.6052 * 1.1111));
-    width: min(100%, calc(100svh * 0.6052 * 1.1111));
-    width: min(100%, calc(var(--vh100, 100svh) * 0.6052 * 1.1111));
+    --computed-w: min(100vw, calc(var(--vh100, 100svh) * var(--tablet-ratio) * var(--tablet-crop-tolerance)));
+    width: min(100%, calc(100vh * 0.6052 * 1.0526));
+    width: min(100%, calc(100svh * 0.6052 * 1.0526));
+    width: var(--computed-w);
+    /* See the mobile tiers' comment above — same height cap. */
     height: 100vh;
     height: 100svh;
-    height: var(--vh100, 100svh);
+    height: min(var(--vh100, 100svh), calc(var(--computed-w) / var(--tablet-ratio)));
   }
 
   .page-home .bg-photo {
@@ -277,7 +316,7 @@
     top: 20.3594cqw;
     width: 20.7031cqw;
     height: auto;
-    font-size: 3.1250cqw;
+    font-size: min(3.1250cqw, 28px);
     white-space: nowrap;
   }
 
@@ -291,7 +330,7 @@
   .page-home .btn {
     width: 21.0286cqw;
     height: 8.6589cqw;
-    font-size: 2.6042cqw;
+    font-size: min(2.6042cqw, 24px);
   }
 
   .page-home .address {
@@ -299,7 +338,7 @@
     bottom: 19.2708cqw;
     width: 34.5052cqw;
     height: auto;
-    font-size: 2.3438cqw;
+    font-size: min(2.3438cqw, 20px);
   }
 
   .page-home .legal-links {
@@ -307,7 +346,7 @@
     bottom: 7.5521cqw;
     width: 35.4167cqw;
     height: auto;
-    font-size: 2.0833cqw;
+    font-size: min(2.0833cqw, 18px);
   }
 
   .page-home .icon-instagram {
@@ -331,7 +370,7 @@
     aspect-ratio: 1728 / 1117;
     width: min(100%, calc(100vh * 1.547), 1920px);
     width: min(100%, calc(100svh * 1.547), 1920px);
-    width: min(100%, calc(var(--vh100, 100svh) * 1.547), 1920px);
+    width: min(100%, calc(var(--vh100, 100svh) * var(--desktop-ratio)), 1920px);
     max-width: none;
   }
 
@@ -358,7 +397,7 @@
     top: 11.1690cqw;
     width: 9.2014cqw;
     height: auto;
-    font-size: 1.3889cqw;
+    font-size: min(1.3889cqw, 28px);
     white-space: nowrap;
   }
 
@@ -372,7 +411,7 @@
   .page-home .btn {
     width: 9.35cqw;
     height: 3.8773cqw;
-    font-size: 1.1574cqw;
+    font-size: min(1.1574cqw, 24px);
   }
 
   .page-home .address {
@@ -380,7 +419,7 @@
     top: 55.4629cqw;
     width: 15.3356cqw;
     height: auto;
-    font-size: 1.0417cqw;
+    font-size: min(1.0417cqw, 20px);
   }
 
   .page-home .legal-links {
@@ -388,7 +427,7 @@
     top: 61.0532cqw;
     width: 15.7407cqw;
     height: auto;
-    font-size: 0.9259cqw;
+    font-size: min(0.9259cqw, 18px);
   }
 
   .page-home .icon-instagram {

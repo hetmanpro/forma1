@@ -8,9 +8,9 @@ $phone = $config['whatsapp_number'];
 $phoneHref = 'tel:+' . $config['whatsapp_e164'];
 ?>
 <main class="screen page-legal">
-  <div class="logo">
+  <a class="logo" href="/index.php">
     <img src="/assets/logo/forma-logo.svg" alt="FORMA">
-  </div>
+  </a>
 
   <div class="content">
     <h1 id="legal-notice">Imprint</h1>
