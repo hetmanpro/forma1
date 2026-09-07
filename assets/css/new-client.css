@@ -213,11 +213,11 @@
   }
 
   .page-newclient .request-form {
-    display: inline-flex;
+    display: flex;
     width: min(22cqw, 150px);
     height: min(6cqw, 60px);
     font-size: min(1.9cqw, 19px);
-    margin: 0 0 6cqw;
+    margin: 0 auto 6cqw;
   }
 
   .page-newclient .legal-links {
