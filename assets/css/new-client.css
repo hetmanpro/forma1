@@ -99,18 +99,18 @@
 }
 
 .page-newclient .request-form {
-  left: 24.4275cqw;
+  left: 33.5878cqw;
   top: 315.0127cqw;
-  width: 51.3995cqw;
-  height: 18.5751cqw;
+  width: min(32.8244cqw, 150px);
+  height: min(13.4860cqw, 60px);
   border: 1px solid #000;
-  border-radius: 50cqw;
+  border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'DM Sans', sans-serif;
-  font-size: 4.5802cqw;
-  text-transform: uppercase;
+  font-size: min(4.0712cqw, 19px);
+  white-space: nowrap;
   text-align: center;
 }
 
@@ -214,9 +214,9 @@
 
   .page-newclient .request-form {
     display: inline-flex;
-    width: 22cqw;
-    height: 6cqw;
-    font-size: 1.9cqw;
+    width: min(22cqw, 150px);
+    height: min(6cqw, 60px);
+    font-size: min(1.9cqw, 19px);
     margin: 0 0 6cqw;
   }
 
@@ -291,11 +291,11 @@
   }
 
   .page-newclient .request-form {
-    left: 43.75cqw;
+    left: 45.6300cqw;
     top: 63.6574cqw;
-    width: 12.4421cqw;
-    height: 3.8773cqw;
-    font-size: 1.1574cqw;
+    width: 150px;
+    height: 60px;
+    font-size: 19px;
   }
 
   .page-newclient .legal-links {

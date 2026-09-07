@@ -1,446 +1,212 @@
-/* ---- Safe-zone / crop-tolerance constants ----
-   Each breakpoint tier below is a "prefer full width, tolerate a
-   capped amount of top-crop before shrinking width" formula:
-     width = min(100%, real-height * ratio * crop-tolerance)
-   `ratio` is the tier's reference design (width/height). `crop-
-   tolerance` is how much taller than the real viewport the design is
-   allowed to render before the excess (always trimmed off the TOP,
-   since the photo and the bottom UI cluster are bottom-anchored
-   together) risks pushing the head up into the logo/heading — see the
-   per-tier comments below for how each cap was derived. Named here so
-   the safe-zone math isn't buried as unlabeled magic numbers. */
-:root {
-  --mobile-spacious-ratio: 0.4613;
-  --mobile-spacious-crop-tolerance: 1.4;
-  --mobile-compact-ratio: 0.5614;
-  --mobile-compact-crop-tolerance: 1.4;
-  --tablet-ratio: 0.6052;
-  --tablet-crop-tolerance: 1.0526;
-  --desktop-ratio: 1.547;
-}
+/* ---- FORMA_mob_5 (Figma) ----
+   Full-bleed environmental salon photo, not a tight head/jacket portrait,
+   so there is no single spot that must never be cropped. That means the
+   container can simply always be 100vw x 100dvh (never shrunk to avoid a
+   crop, which is what caused black side bars before) with the photo as a
+   centered object-fit:cover background.
+
+   Everything else is one flex column (.content) instead of independently
+   absolute-positioned elements: flow layout physically cannot overlap.
+   Each gap/size below is capped three ways — min(value cqw, value px,
+   value dvh) — so it is pixel-accurate to the Figma mobile frame on
+   ordinary phones, never balloons on tablet/desktop (px cap), and on a
+   short/small phone where width-relative spacing would otherwise not
+   leave enough vertical room (dvh cap) compresses instead of colliding.
+   One fluid rule set, no discrete breakpoint tiers. */
 
 .page-home {
-  aspect-ratio: 393 / 852;
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  overflow: hidden;
   background: #000;
 }
 
-/* Mobile + tablet: the container is sized to EXACTLY match the real
-   visible viewport (not the design's fixed aspect-ratio), so anything
-   positioned normally within it — the logo, "COMING SOON", and the
-   buttons/address/footer row (the last three anchored with `bottom`
-   instead of `top` below, so they stay pinned to the bottom and to
-   each other) — is always fully on-screen and never clipped.
-   Only the background photo is deliberately oversized (see .bg-photo
-   below) and gets cropped by this container's own overflow:hidden —
-   full width whenever that only costs a modest top-crop (e.g. the
-   real height lost to Safari's toolbars), capped at ~28% before
-   falling back to a modest width-shrink on extreme (landscape) shapes
-   rather than cropping away most of the photo. */
-@media (max-width: 1279px) {
-  .page-home {
-    aspect-ratio: auto;
-    --computed-w: min(100vw, 393px, calc(var(--vh100, 100svh) * var(--mobile-spacious-ratio) * var(--mobile-spacious-crop-tolerance)));
-    width: min(100%, calc(100vh * 0.4613 * 1.4));
-    width: min(100%, calc(100svh * 0.4613 * 1.4));
-    width: var(--computed-w);
-    /* Height is capped at what the design's own ratio implies for the
-       resolved width, not just the real viewport height — otherwise a
-       viewport taller/narrower than the 393:852 reference (e.g.
-       412x915) lets the container grow taller than the photo actually
-       covers, leaving a black gap above it instead of the photo
-       properly reaching the top. Any leftover viewport height beyond
-       that shows as plain body background around a correctly
-       proportioned card, instead of stretching the container. */
-    height: 100vh;
-    height: 100svh;
-    height: min(var(--vh100, 100svh), calc(var(--computed-w) / var(--mobile-spacious-ratio)));
-  }
-}
-
 .page-home .bg-photo {
-  left: -32.0611cqw;
-  bottom: -33.0789cqw;
-  width: 168.4478cqw;
-  height: 252.6718cqw;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .page-home .bg-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* The walking figure spans roughly the vertical 38%-89% band of this
+     photo (~51% of its height) — wider than ~1.3:1 (nearly every
+     landscape screen), object-fit:cover physically cannot show all of
+     it without either letterboxing or losing the "always full-bleed"
+     requirement, so something has to give. Biased down from dead
+     center so the head/torso stay safely in frame at any width, and
+     only the legs/feet (least critical) crop first as the screen
+     widens, rather than a plain center crop risking the torso. */
+  object-position: center 58%;
+}
+
+.page-home .content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Centered in whatever space is left above .content-bottom, instead of
+   a fixed top offset — so it stays visually centered rather than
+   drifting up and leaving dead space below the footer on tall screens. */
+.page-home .content-top {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Always glued to the bottom edge — never floats with dead space
+   beneath it, regardless of viewport height. */
+.page-home .content-bottom {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: min(4.5802cqw, 21px, 2.1127dvh);
 }
 
 .page-home .logo {
-  left: 25.1908cqw;
-  top: 1.5cqw;
-  width: 54.9618cqw;
-  height: 14.7583cqw;
+  flex: 0 0 auto;
+  height: min(20.5479cqw, 90px, 9.478dvh);
 }
 
 .page-home .logo img {
-  width: 100%;
+  display: block;
+  width: auto;
   height: 100%;
 }
 
 .page-home .opening-date {
-  left: 36.1323cqw;
-  top: 20.8384cqw;
-  width: 30.7888cqw;
-  height: 11.7048cqw;
-  margin: 0;
+  flex: 0 0 auto;
+  margin: min(12.2355cqw, 120px, 12.2355dvh) 0 0;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: min(4.5802cqw, 20px);
-  line-height: 1.2;
+  font-weight: 700;
+  font-size: min(4.5802cqw, 22px, 4.5802dvh);
+  letter-spacing: 0.3em;
+  line-height: 1.3;
   text-align: center;
   text-transform: uppercase;
-  color: #000;
+  color: #fff;
+  white-space: nowrap;
 }
 
 .page-home .actions {
-  left: 14.5038cqw;
-  bottom: 35.1145cqw;
-  width: 69.9745cqw;
-  height: 13.4860cqw;
+  flex: 0 0 auto;
+  width: min(73.7913cqw, 340px);
+  height: min(13.4860cqw, 60px, 13.4860dvh);
   display: flex;
   justify-content: space-between;
 }
 
 .page-home .btn {
-  width: 32.8244cqw;
-  height: 13.4860cqw;
+  width: min(32.8244cqw, 150px);
+  height: min(13.4860cqw, 60px, 13.4860dvh);
   border: 1px solid #fff;
-  border-radius: 50cqw;
+  border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'DM Sans', sans-serif;
-  font-size: min(4.0712cqw, 18px);
+  font-size: min(4.0712cqw, 19px);
   color: #fff;
 }
 
-.page-home .address {
-  left: 24.1730cqw;
-  bottom: 17.5573cqw;
-  width: 52.4173cqw;
-  height: 10.6870cqw;
+.page-home .info-block {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: min(9.3897cqw, 90px, 9.3897dvh) 0 0;
+}
+
+.page-home .info-location,
+.page-home .info-whatsapp {
+  display: flex;
+  align-items: baseline;
+  gap: min(2.7990cqw, 13px);
+  white-space: nowrap;
+  font-size: min(3.0534cqw, 15px);
+  color: #fff;
+}
+
+.page-home .info-whatsapp {
+  margin-top: min(1.1737cqw, 12px, 1.1737dvh);
+}
+
+.page-home .info-label {
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
+}
+
+.page-home .info-location .info-value {
   font-family: 'Space Mono', monospace;
-  font-size: min(3.5623cqw, 16px);
-  line-height: 1.2;
-  text-align: center;
   color: #fff;
   text-decoration: underline;
 }
 
-.page-home .legal-links {
-  left: 7.6336cqw;
-  bottom: 4.5802cqw;
-  width: 55.9796cqw;
-  height: 4.3257cqw;
+.page-home .info-whatsapp .info-value {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #fff;
+  text-decoration: underline;
+}
+
+.page-home .site-footer {
+  flex: 0 0 auto;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  width: min(86.5140cqw, 380px);
+  margin-top: min(9.0376cqw, 88px, 9.0376dvh);
+}
+
+.page-home .legal-links {
+  display: flex;
+  gap: min(8cqw, 32px);
   font-family: 'Space Grotesk', sans-serif;
   font-size: min(3.3079cqw, 15px);
-  color: #fff;
+  color: #c1c1c1;
 }
 
 .page-home .legal-links a {
   text-decoration: underline;
 }
 
-.page-home .icon-instagram {
-  left: 73.2824cqw;
-  bottom: 4.5165cqw;
-  width: 7.4427cqw;
-  height: 7.4427cqw;
+.page-home .social-icons {
+  display: flex;
+  align-items: center;
+  gap: min(5.7888cqw, 26px);
+}
+
+.page-home .icon-instagram,
+.page-home .icon-whatsapp {
   color: #fff;
 }
 
+.page-home .icon-instagram {
+  width: min(7.4427cqw, 34px);
+  height: min(7.4427cqw, 34px);
+}
+
 .page-home .icon-whatsapp {
-  left: 86.5140cqw;
-  bottom: 4.5802cqw;
-  width: 7.6336cqw;
-  height: 7.6336cqw;
-  color: #fff;
+  width: min(7.6336cqw, 35px);
+  height: min(7.6336cqw, 35px);
 }
 
 .page-home .icon-instagram svg,
 .page-home .icon-whatsapp svg {
   width: 100%;
   height: 100%;
-}
-
-/* ---- Compact mobile (adapted from Figma frame "iPhone 16 - 25") ----
-   Used instead of the spacious 393x852 design when the real measured
-   viewport height is short. Full width whenever that only costs a
-   modest top-crop (same "prefer no side bars" approach as the
-   spacious design), capped before falling back to a width-shrink —
-   which is what was showing as black side bars on shorter real
-   phones. The photo and the buttons/address/footer cluster are
-   bottom-anchored so they stay pinned together and any crop lands on
-   the empty space above the head, not on them. Logo/heading stay
-   top-anchored so they're never clipped. */
-@media (max-width: 767px) {
-  html.compact-mobile .page-home {
-    aspect-ratio: auto;
-    --computed-w: min(100vw, 393px, calc(var(--vh100, 100svh) * var(--mobile-compact-ratio) * var(--mobile-compact-crop-tolerance)));
-    width: min(100%, calc(100vh * 0.5614 * 1.4));
-    width: min(100%, calc(100svh * 0.5614 * 1.4));
-    width: var(--computed-w);
-    /* See the spacious tier's comment above — same height cap so a
-       tall/narrow viewport can't stretch the container past what the
-       photo actually covers. */
-    height: 100vh;
-    height: 100svh;
-    height: min(var(--vh100, 100svh), calc(var(--computed-w) / var(--mobile-compact-ratio)));
-  }
-
-  html.compact-mobile .page-home .bg-photo {
-    left: -15.5216cqw;
-    top: auto;
-    bottom: -24.6820cqw;
-    width: 132.1159cqw;
-    height: 203.5624cqw;
-  }
-
-  html.compact-mobile .page-home .logo {
-    top: 6.3613cqw;
-    width: 49.3385cqw;
-    height: 13.2316cqw;
-  }
-
-  html.compact-mobile .page-home .opening-date {
-    left: 36.3868cqw;
-    top: 22.9008cqw;
-    width: 26.9720cqw;
-    height: auto;
-    font-size: min(4.0712cqw, 18px);
-  }
-
-  html.compact-mobile .page-home .actions {
-    top: auto;
-    bottom: 27.9898cqw;
-    width: 69.9746cqw;
-    height: 13.4860cqw;
-  }
-
-  html.compact-mobile .page-home .btn {
-    font-size: min(4.0712cqw, 18px);
-  }
-
-  html.compact-mobile .page-home .address {
-    left: 16.0305cqw;
-    top: auto;
-    bottom: 18.0661cqw;
-    width: 67.6845cqw;
-    height: auto;
-    font-size: min(3.5623cqw, 16px);
-    white-space: nowrap;
-  }
-
-  html.compact-mobile .page-home .address .address-break {
-    display: none;
-  }
-
-  html.compact-mobile .page-home .address .address-city::before {
-    content: ", ";
-  }
-
-  html.compact-mobile .page-home .legal-links {
-    left: 6.8702cqw;
-    top: auto;
-    bottom: 3.8167cqw;
-    width: 55.9796cqw;
-    font-size: min(3.3079cqw, 15px);
-    color: #c1c1c1;
-  }
-
-  html.compact-mobile .page-home .icon-instagram {
-    left: 72.5191cqw;
-    top: auto;
-    bottom: 3.7532cqw;
-  }
-
-  html.compact-mobile .page-home .icon-whatsapp {
-    left: 85.7506cqw;
-    top: auto;
-    bottom: 3.8167cqw;
-  }
-}
-
-/* ---- Tablet (from Figma frame "tablet", 768px–1279px) ----
-   Crop tolerance capped much lower than mobile's (1.0526x = max ~5%
-   crop, vs mobile's 1.4x = ~28%): the logo/heading are top-anchored
-   while the photo is bottom-anchored, and at this design's tall
-   768:1269 ratio, more than ~10% crop pushes the head up into the
-   logo before the width-shrink fallback would otherwise kick in —
-   verified visually at 768x1100 (head touching logo) and 768x1050
-   (clear overlap). The cap is set well below that (~5%, not the max
-   ~10% still-technically-safe figure) so real-world font-rendering/
-   subpixel variance across browsers never eats the margin. Common
-   iPad sizes (e.g. 768x1024, needing ~19% crop) get a modest
-   width-shrink instead of any crop-driven overlap risk. */
-@media (min-width: 768px) and (max-width: 1279px) {
-  .page-home {
-    aspect-ratio: auto;
-    max-width: none;
-    --computed-w: min(100vw, calc(var(--vh100, 100svh) * var(--tablet-ratio) * var(--tablet-crop-tolerance)));
-    width: min(100%, calc(100vh * 0.6052 * 1.0526));
-    width: min(100%, calc(100svh * 0.6052 * 1.0526));
-    width: var(--computed-w);
-    /* See the mobile tiers' comment above — same height cap. */
-    height: 100vh;
-    height: 100svh;
-    height: min(var(--vh100, 100svh), calc(var(--computed-w) / var(--tablet-ratio)));
-  }
-
-  .page-home .bg-photo {
-    left: -133.9844cqw;
-    bottom: -5.7292cqw;
-    width: 391.5365cqw;
-    height: 170.9635cqw;
-  }
-
-  .page-home .bg-photo img {
-    object-fit: fill;
-  }
-
-  .page-home .logo {
-    left: 23.1771cqw;
-    top: 2cqw;
-    width: 53.7760cqw;
-    height: 14.8109cqw;
-  }
-
-  .page-home .opening-date {
-    left: 39.7135cqw;
-    top: 20.3594cqw;
-    width: 20.7031cqw;
-    height: auto;
-    font-size: min(3.1250cqw, 28px);
-    white-space: nowrap;
-  }
-
-  .page-home .actions {
-    left: 26.3021cqw;
-    bottom: 33.7240cqw;
-    width: 47.3958cqw;
-    height: 8.7240cqw;
-  }
-
-  .page-home .btn {
-    width: 21.0286cqw;
-    height: 8.6589cqw;
-    font-size: min(2.6042cqw, 24px);
-  }
-
-  .page-home .address {
-    left: 32.8125cqw;
-    bottom: 19.2708cqw;
-    width: 34.5052cqw;
-    height: auto;
-    font-size: min(2.3438cqw, 20px);
-  }
-
-  .page-home .legal-links {
-    left: 19.9219cqw;
-    bottom: 7.5521cqw;
-    width: 35.4167cqw;
-    height: auto;
-    font-size: min(2.0833cqw, 18px);
-  }
-
-  .page-home .icon-instagram {
-    left: 64.4531cqw;
-    bottom: 6.1198cqw;
-    width: 5.7292cqw;
-    height: 5.5990cqw;
-  }
-
-  .page-home .icon-whatsapp {
-    left: 74.4792cqw;
-    bottom: 5.9896cqw;
-    width: 5.8594cqw;
-    height: 5.8594cqw;
-  }
-}
-
-/* ---- Desktop (from Figma "MacBook Pro 16\" - 1", 1280px+) ---- */
-@media (min-width: 1280px) {
-  .page-home {
-    aspect-ratio: 1728 / 1117;
-    width: min(100%, calc(100vh * 1.547), 1920px);
-    width: min(100%, calc(100svh * 1.547), 1920px);
-    width: min(100%, calc(var(--vh100, 100svh) * var(--desktop-ratio)), 1920px);
-    max-width: none;
-  }
-
-  .page-home .bg-photo {
-    left: -25.6366cqw;
-    top: 0cqw;
-    width: 163.9468cqw;
-    height: 71.5856cqw;
-  }
-
-  .page-home .bg-photo img {
-    object-fit: fill;
-  }
-
-  .page-home .logo {
-    left: 38.3102cqw;
-    top: 3.0093cqw;
-    width: 23.9005cqw;
-    height: 6.5820cqw;
-  }
-
-  .page-home .opening-date {
-    left: 45.6597cqw;
-    top: 11.1690cqw;
-    width: 9.2014cqw;
-    height: auto;
-    font-size: min(1.3889cqw, 28px);
-    white-space: nowrap;
-  }
-
-  .page-home .actions {
-    left: 39.4676cqw;
-    top: 48.4954cqw;
-    width: 21.0648cqw;
-    height: 3.8773cqw;
-  }
-
-  .page-home .btn {
-    width: 9.35cqw;
-    height: 3.8773cqw;
-    font-size: min(1.1574cqw, 24px);
-  }
-
-  .page-home .address {
-    left: 42.3611cqw;
-    top: 55.4629cqw;
-    width: 15.3356cqw;
-    height: auto;
-    font-size: min(1.0417cqw, 20px);
-  }
-
-  .page-home .legal-links {
-    left: 36.5741cqw;
-    top: 61.0532cqw;
-    width: 15.7407cqw;
-    height: auto;
-    font-size: min(0.9259cqw, 18px);
-  }
-
-  .page-home .icon-instagram {
-    left: 56.3657cqw;
-    top: 60.3588cqw;
-    width: 2.5463cqw;
-    height: 2.4884cqw;
-  }
-
-  .page-home .icon-whatsapp {
-    left: 60.8218cqw;
-    top: 60.3009cqw;
-    width: 2.6042cqw;
-    height: 2.6042cqw;
-  }
 }

@@ -46,7 +46,7 @@ require __DIR__ . '/includes/header.php';
     </div>
   </div>
 
-  <a class="el request-form" id="request-form-btn" href="mailto:<?= htmlspecialchars($config['contact_email']) ?>?subject=New%20client%20request">Request form</a>
+  <a class="el request-form" href="https://docs.google.com/forms/d/e/1FAIpQLSfME2fflYi89GojOTYWiw86kTo3PPlNh6wrDVITrw5atwa5dQ/viewform" target="_blank" rel="noopener">request form</a>
 
   <nav class="el legal-links">
     <a href="/legal.php">Legal Notice</a>
@@ -63,16 +63,4 @@ require __DIR__ . '/includes/header.php';
 
   <a class="el back-link" href="/index.php">&larr; Back to FORMA</a>
 </main>
-
-<script type="module">
-import { init, openModule } from "https://beautyprosoftware.com/online-booking-init/index.js";
-init({
-  database: 688499,
-  elementId: 'request-form-btn'
-});
-document.getElementById('request-form-btn').addEventListener('click', function (e) {
-  e.preventDefault();
-  openModule();
-});
-</script>
 <?php require __DIR__ . '/includes/footer.php'; ?>
