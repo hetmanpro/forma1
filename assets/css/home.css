@@ -36,9 +36,7 @@
   --dvh-btn-font: 9999px;
   --dvh-info-block-margin: 9999px;
   --dvh-info-whatsapp-margin: 9999px;
-  --dvh-info-font: 9999px;
   --dvh-site-footer-margin: 9999px;
-  --dvh-legal-font: 9999px;
   --dvh-icon-ig: 9999px;
   --dvh-icon-wa: 9999px;
   --dvh-content-bottom-pad: 9999px;
@@ -54,9 +52,7 @@
     --dvh-btn-font: 1.8783dvh;
     --dvh-info-block-margin: 4.3312dvh;
     --dvh-info-whatsapp-margin: 0.5414dvh;
-    --dvh-info-font: 1.4084dvh;
     --dvh-site-footer-margin: 4.1688dvh;
-    --dvh-legal-font: 1.5258dvh;
     --dvh-icon-ig: 3.4331dvh;
     --dvh-icon-wa: 3.5211dvh;
     --dvh-content-bottom-pad: 2.1127dvh;
@@ -198,7 +194,7 @@
   align-items: baseline;
   gap: min(2.7990cqw, 13px);
   white-space: nowrap;
-  font-size: min(3.0534cqw, 15px, var(--dvh-info-font));
+  font-size: min(3.0534cqw, 15px);
   color: #fff;
 }
 
@@ -236,7 +232,7 @@
   display: flex;
   gap: min(8cqw, 32px);
   font-family: 'Space Grotesk', sans-serif;
-  font-size: min(3.3079cqw, 15px, var(--dvh-legal-font));
+  font-size: min(3.3079cqw, 15px);
   color: #c1c1c1;
 }
 
