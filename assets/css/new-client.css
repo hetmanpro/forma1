@@ -194,10 +194,10 @@
   }
 
   .page-newclient .intro {
-    width: 100%;
+    width: 62cqw;
     font-size: 1.9cqw;
     line-height: 1.55;
-    margin: 0 0 6cqw;
+    margin: 0 auto 6cqw;
   }
 
   .page-newclient .booking-policy-title {
@@ -207,9 +207,9 @@
   }
 
   .page-newclient .policy-list {
-    width: 100%;
+    width: 62cqw;
     font-size: 1.8cqw;
-    margin: 0 0 6cqw;
+    margin: 0 auto 6cqw;
   }
 
   .page-newclient .request-form {
@@ -269,9 +269,9 @@
   }
 
   .page-newclient .intro {
-    left: 36.9792cqw;
+    left: 15.7408cqw;
     top: 18.4028cqw;
-    width: 26.5046cqw;
+    width: 68.5185cqw;
     font-size: 0.9259cqw;
   }
 
@@ -284,9 +284,9 @@
   }
 
   .page-newclient .policy-list {
-    left: 36.9792cqw;
+    left: 15.7408cqw;
     top: 40.8565cqw;
-    width: 26.5046cqw;
+    width: 68.5185cqw;
     font-size: 0.8681cqw;
   }
 
