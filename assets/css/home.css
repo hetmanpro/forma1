@@ -34,15 +34,31 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* The walking figure spans roughly the vertical 38%-89% band of this
-     photo (~51% of its height) — wider than ~1.3:1 (nearly every
-     landscape screen), object-fit:cover physically cannot show all of
-     it without either letterboxing or losing the "always full-bleed"
-     requirement, so something has to give. Biased down from dead
-     center so the head/torso stay safely in frame at any width, and
-     only the legs/feet (least critical) crop first as the screen
-     widens, rather than a plain center crop risking the torso. */
-  object-position: center 58%;
+  /* Anchored bottom-left: the chair and the walking figure both sit in
+     the left half of the photo, and the (distracting on small screens)
+     round lamps cluster toward the right — so on narrow/tall screens
+     (where cover crops left/right) this keeps the chair+figure and
+     crops away most of the lamps, and on wide screens (where cover
+     crops top/bottom) it keeps the floor/figure and crops the ceiling
+     lamps instead of the subject. */
+  object-position: left bottom;
+}
+
+/* Extra zoom on phones, anchored to the same bottom-left corner as the
+   object-position above: plain cover on a narrow/tall screen still
+   shows the full photo height (nothing to crop vertically), which
+   keeps the ceiling lamps clearly in view. Enlarging the image's own
+   box before cover/object-position apply pushes the effective crop in
+   further from the bottom-left, matching the Figma mobile frame
+   (FORMA_mob_7) — chair and figure stay put, ceiling/lamps crop out. */
+@media (max-width: 767px) {
+  .page-home .bg-photo img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 140%;
+    height: 140%;
+  }
 }
 
 .page-home .content {
@@ -93,9 +109,9 @@
   flex: 0 0 auto;
   margin: min(12.2355cqw, 120px, 12.2355dvh) 0 0;
   font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
+  font-weight: 400;
   font-size: min(4.5802cqw, 22px, 4.5802dvh);
-  letter-spacing: 0.3em;
+  letter-spacing: normal;
   line-height: 1.3;
   text-align: center;
   text-transform: uppercase;
