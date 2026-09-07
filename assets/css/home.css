@@ -82,6 +82,17 @@
   justify-content: center;
 }
 
+/* Mobile only: anchor from the real top edge instead of centering the
+   whole group, with padding-top matching the logo's own margin-top —
+   so COMING SOON sits exactly midway between the screen's top edge and
+   the logo (equal gap above and below it), as requested. */
+@media (max-width: 767px) {
+  .page-home .content-top {
+    justify-content: flex-start;
+    padding-top: min(25.4453cqw, 115px, 25.4453dvh);
+  }
+}
+
 /* Always glued to the bottom edge — never floats with dead space
    beneath it, regardless of viewport height. */
 .page-home .content-bottom {
