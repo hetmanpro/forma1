@@ -93,20 +93,8 @@
   padding-bottom: min(4.5802cqw, 21px, 2.1127dvh);
 }
 
-.page-home .logo {
-  flex: 0 0 auto;
-  height: min(20.5479cqw, 90px, 9.478dvh);
-}
-
-.page-home .logo img {
-  display: block;
-  width: auto;
-  height: 100%;
-}
-
 .page-home .opening-date {
   flex: 0 0 auto;
-  margin: min(12.2355cqw, 120px, 12.2355dvh) 0 0;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 400;
   font-size: min(4.5802cqw, 22px, 4.5802dvh);
@@ -118,8 +106,21 @@
   white-space: nowrap;
 }
 
+.page-home .logo {
+  flex: 0 0 auto;
+  margin-top: min(25.4453cqw, 115px, 25.4453dvh);
+  height: min(20.5479cqw, 90px, 9.478dvh);
+}
+
+.page-home .logo img {
+  display: block;
+  width: auto;
+  height: 100%;
+}
+
 .page-home .actions {
   flex: 0 0 auto;
+  margin-top: min(7.6336cqw, 36px, 7.6336dvh);
   width: min(73.7913cqw, 340px);
   height: min(13.4860cqw, 60px, 13.4860dvh);
   display: flex;

@@ -12,19 +12,19 @@ require __DIR__ . '/includes/header.php';
 
   <div class="content">
     <div class="content-top">
+      <p class="opening-date">COMING SOON<br>&nbsp;</p>
+
       <div class="logo">
         <img src="/assets/logo/forma-logo-white.svg" alt="FORMA">
       </div>
 
-      <p class="opening-date">COMING SOON<br>&nbsp;</p>
-    </div>
-
-    <div class="content-bottom">
       <div class="actions">
         <a class="btn" id="booking-btn" href="mailto:<?= htmlspecialchars($config['contact_email']) ?>?subject=Booking%20request">booking</a>
         <a class="btn" href="/new-client.php">new client</a>
       </div>
+    </div>
 
+    <div class="content-bottom">
       <div class="info-block">
         <div class="info-location">
           <span class="info-label">Location:</span>
