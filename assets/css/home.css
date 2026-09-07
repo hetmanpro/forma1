@@ -34,23 +34,21 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Anchored bottom-left: the chair and the walking figure both sit in
-     the left half of the photo, and the (distracting on small screens)
-     round lamps cluster toward the right — so on narrow/tall screens
-     (where cover crops left/right) this keeps the chair+figure and
-     crops away most of the lamps, and on wide screens (where cover
-     crops top/bottom) it keeps the floor/figure and crops the ceiling
-     lamps instead of the subject. */
-  object-position: left bottom;
+  /* Tablet/desktop: wide screens crop top/bottom under cover, so this
+     biases down from dead center to keep the head/torso safely in
+     frame, letting only the legs/feet crop first as the screen widens
+     (see the mobile override below for the narrow-screen case, which
+     needs different handling since it crops left/right instead). */
+  object-position: center 58%;
 }
 
-/* Extra zoom on phones, anchored to the same bottom-left corner as the
-   object-position above: plain cover on a narrow/tall screen still
-   shows the full photo height (nothing to crop vertically), which
+/* Mobile only: narrow/tall screens crop left/right under cover, and at
+   the natural (unzoomed) scale the full photo height is shown, which
    keeps the ceiling lamps clearly in view. Enlarging the image's own
-   box before cover/object-position apply pushes the effective crop in
-   further from the bottom-left, matching the Figma mobile frame
-   (FORMA_mob_7) — chair and figure stay put, ceiling/lamps crop out. */
+   box to 140% before cover/object-position apply, anchored bottom-left
+   (chair + figure both sit in the left half of the photo), pushes the
+   crop in enough to match the Figma mobile frame (FORMA_mob_7) —
+   chair/figure stay put, ceiling/lamps crop out almost entirely. */
 @media (max-width: 767px) {
   .page-home .bg-photo img {
     position: absolute;
@@ -58,6 +56,7 @@
     bottom: 0;
     width: 140%;
     height: 140%;
+    object-position: left bottom;
   }
 }
 
