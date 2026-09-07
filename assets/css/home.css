@@ -22,6 +22,45 @@
   height: 100dvh;
   overflow: hidden;
   background: #000;
+  /* dvh safety caps (see .content-top comment below) are disabled by
+     default (a sentinel far larger than any real value, so it never
+     wins the min()) — real phones never get short enough to need it,
+     and it was making mobile text/spacing visibly smaller than
+     intended. Enabled with real values only at tablet+ width, where a
+     resized browser window can get short enough to matter. */
+  --dvh-opening-date: 9999px;
+  --dvh-logo-margin: 9999px;
+  --dvh-logo-height: 9999px;
+  --dvh-actions-margin: 9999px;
+  --dvh-actions-height: 9999px;
+  --dvh-btn-font: 9999px;
+  --dvh-info-block-margin: 9999px;
+  --dvh-info-whatsapp-margin: 9999px;
+  --dvh-info-font: 9999px;
+  --dvh-site-footer-margin: 9999px;
+  --dvh-legal-font: 9999px;
+  --dvh-icon-ig: 9999px;
+  --dvh-icon-wa: 9999px;
+  --dvh-content-bottom-pad: 9999px;
+}
+
+@media (min-width: 768px) {
+  .page-home {
+    --dvh-opening-date: 2.1127dvh;
+    --dvh-logo-margin: 11.7371dvh;
+    --dvh-logo-height: 9.478dvh;
+    --dvh-actions-margin: 3.5211dvh;
+    --dvh-actions-height: 6.2207dvh;
+    --dvh-btn-font: 1.8783dvh;
+    --dvh-info-block-margin: 4.3312dvh;
+    --dvh-info-whatsapp-margin: 0.5414dvh;
+    --dvh-info-font: 1.4084dvh;
+    --dvh-site-footer-margin: 4.1688dvh;
+    --dvh-legal-font: 1.5258dvh;
+    --dvh-icon-ig: 3.4331dvh;
+    --dvh-icon-wa: 3.5211dvh;
+    --dvh-content-bottom-pad: 2.1127dvh;
+  }
 }
 
 .page-home .bg-photo {
@@ -95,14 +134,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: min(4.5802cqw, 21px, 2.1127dvh);
+  padding-bottom: min(4.5802cqw, 21px, var(--dvh-content-bottom-pad));
 }
 
 .page-home .opening-date {
   flex: 0 0 auto;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 400;
-  font-size: min(4.5802cqw, 22px, 2.1127dvh);
+  font-size: min(4.5802cqw, 22px, var(--dvh-opening-date));
   letter-spacing: normal;
   line-height: 1.3;
   text-align: center;
@@ -113,8 +152,8 @@
 
 .page-home .logo {
   flex: 0 0 auto;
-  margin-top: min(25.4453cqw, 115px, 11.7371dvh);
-  height: min(20.5479cqw, 90px, 9.478dvh);
+  margin-top: min(25.4453cqw, 115px, var(--dvh-logo-margin));
+  height: min(20.5479cqw, 90px, var(--dvh-logo-height));
 }
 
 .page-home .logo img {
@@ -125,23 +164,23 @@
 
 .page-home .actions {
   flex: 0 0 auto;
-  margin-top: min(7.6336cqw, 36px, 3.5211dvh);
+  margin-top: min(7.6336cqw, 36px, var(--dvh-actions-margin));
   width: min(73.7913cqw, 340px);
-  height: min(13.4860cqw, 60px, 6.2207dvh);
+  height: min(13.4860cqw, 60px, var(--dvh-actions-height));
   display: flex;
   justify-content: space-between;
 }
 
 .page-home .btn {
   width: min(32.8244cqw, 150px);
-  height: min(13.4860cqw, 60px, 6.2207dvh);
+  height: min(13.4860cqw, 60px, var(--dvh-actions-height));
   border: 1px solid #fff;
   border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'DM Sans', sans-serif;
-  font-size: min(4.0712cqw, 19px, 1.8783dvh);
+  font-size: min(4.0712cqw, 19px, var(--dvh-btn-font));
   color: #fff;
 }
 
@@ -150,7 +189,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: min(9.3897cqw, 90px, 4.3312dvh) 0 0;
+  margin: min(9.3897cqw, 90px, var(--dvh-info-block-margin)) 0 0;
 }
 
 .page-home .info-location,
@@ -159,12 +198,12 @@
   align-items: baseline;
   gap: min(2.7990cqw, 13px);
   white-space: nowrap;
-  font-size: min(3.0534cqw, 15px, 1.4084dvh);
+  font-size: min(3.0534cqw, 15px, var(--dvh-info-font));
   color: #fff;
 }
 
 .page-home .info-whatsapp {
-  margin-top: min(1.1737cqw, 12px, 0.5414dvh);
+  margin-top: min(1.1737cqw, 12px, var(--dvh-info-whatsapp-margin));
 }
 
 .page-home .info-label {
@@ -190,14 +229,14 @@
   align-items: center;
   justify-content: space-between;
   width: min(86.5140cqw, 380px);
-  margin-top: min(9.0376cqw, 88px, 4.1688dvh);
+  margin-top: min(9.0376cqw, 88px, var(--dvh-site-footer-margin));
 }
 
 .page-home .legal-links {
   display: flex;
   gap: min(8cqw, 32px);
   font-family: 'Space Grotesk', sans-serif;
-  font-size: min(3.3079cqw, 15px, 1.5258dvh);
+  font-size: min(3.3079cqw, 15px, var(--dvh-legal-font));
   color: #c1c1c1;
 }
 
@@ -217,13 +256,13 @@
 }
 
 .page-home .icon-instagram {
-  width: min(7.4427cqw, 34px, 3.4331dvh);
-  height: min(7.4427cqw, 34px, 3.4331dvh);
+  width: min(7.4427cqw, 34px, var(--dvh-icon-ig));
+  height: min(7.4427cqw, 34px, var(--dvh-icon-ig));
 }
 
 .page-home .icon-whatsapp {
-  width: min(7.6336cqw, 35px, 3.5211dvh);
-  height: min(7.6336cqw, 35px, 3.5211dvh);
+  width: min(7.6336cqw, 35px, var(--dvh-icon-wa));
+  height: min(7.6336cqw, 35px, var(--dvh-icon-wa));
 }
 
 .page-home .icon-instagram svg,
