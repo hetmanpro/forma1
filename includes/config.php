@@ -4,6 +4,6 @@ return [
     'whatsapp_e164'   => '436769242326',
     'contact_email'   => 'forma.vienna@gmail.com',
     'address'         => "Nordbahnstrasse 15, 1020 Vienna",
-    'maps_url'        => 'https://maps.app.goo.gl/3ygLfBX9yFgHFbu99',
+    'maps_url'        => 'https://maps.app.goo.gl/a9ANATSS5zzjJvrA9?g_st=ic',
     'instagram_url'   => 'https://www.instagram.com/forma_vienna',
 ];
