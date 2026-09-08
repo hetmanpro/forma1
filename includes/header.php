@@ -8,6 +8,9 @@ if (!isset($pageCss)) {
 if (!isset($bodyClass)) {
     $bodyClass = '';
 }
+if (!isset($pageJs)) {
+    $pageJs = [];
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -19,6 +22,9 @@ if (!isset($bodyClass)) {
 <link rel="stylesheet" href="/assets/css/base.css">
 <?php foreach ($pageCss as $href): ?>
 <link rel="stylesheet" href="<?= htmlspecialchars($href) ?>">
+<?php endforeach; ?>
+<?php foreach ($pageJs as $src): ?>
+<script src="<?= htmlspecialchars($src) ?>" defer></script>
 <?php endforeach; ?>
 </head>
 <body<?= $bodyClass ? ' class="' . htmlspecialchars($bodyClass) . '"' : '' ?>>

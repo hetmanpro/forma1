@@ -146,6 +146,33 @@
   white-space: nowrap;
 }
 
+/* Sized in JS to the widest of the three cycling phrases, so the
+   typewriter text can grow/shrink while typing without the centered
+   block's edges jumping around. Height is unaffected either way: the
+   <br>&nbsp; on .opening-date already reserves a fixed two-line box,
+   so the logo/buttons below never move. */
+.page-home .opening-date-typed-wrap {
+  display: inline-block;
+  text-align: center;
+}
+
+.page-home .opening-date .typed-cursor {
+  color: #fff;
+  font-weight: inherit;
+  animation: forma-cursor-blink 0.75s step-end infinite;
+}
+
+@keyframes forma-cursor-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-home .opening-date .typed-cursor {
+    display: none;
+  }
+}
+
 .page-home .logo {
   flex: 0 0 auto;
   margin-top: min(25.4453cqw, 115px, var(--dvh-logo-margin));
