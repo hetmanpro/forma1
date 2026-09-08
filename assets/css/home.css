@@ -59,39 +59,134 @@
   }
 }
 
-.page-home .bg-photo {
+/* ---- Background crossfade slideshow ----
+   Pure-CSS, fully automatic dissolve behind the existing foreground
+   content. Timing math: 4 photos x 9s each = 36s full loop
+   (animation-duration below). Add/remove a <figure> in index.php and
+   update BOTH the duration and every figure's animation-delay (on both
+   animations — crossfade and kenburns share the same delays so the
+   zoom and the dissolve stay in sync) to keep the loop in sync — see
+   the per-figure comments below for the delay formula.
+
+   Each figure fades in over 3s, holds fully opaque, then fades out
+   over 3s into the next photo — the fade-out of one photo and the
+   fade-in of the next happen during the same 3s window, which is what
+   produces the crossfade (rather than a hard cut). See the
+   @keyframes comment for the percentage math.
+
+   Each figure also very slowly scales up (1 -> 1.12) over its full
+   36s turn via a second, independent animation (forma-kenburns) —
+   since each photo is only actually visible for ~12s of that 36s
+   (its fade-in + hold + fade-out), the visible zoom is a subtle
+   creep, not an obvious jump; increase 1.12 for a stronger effect. */
+.page-home .crossfade {
   inset: 0;
   width: 100%;
   height: 100%;
+  z-index: 0;
+  overflow: hidden;
 }
 
-.page-home .bg-photo img {
+.page-home .crossfade figure {
+  margin: 0;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  /* Tablet/desktop: wide screens crop top/bottom under cover, so this
-     biases down from dead center to keep the head/torso safely in
-     frame, letting only the legs/feet crop first as the screen widens
-     (see the mobile override below for the narrow-screen case, which
-     needs different handling since it crops left/right instead). */
-  object-position: center 58%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* Default for every photo except the first (see the nth-child(1)
+     overrides below) — plain centered cover, nothing to tune yet. */
+  background-position: center center;
+  opacity: 0;
+  animation-name: forma-crossfade, forma-kenburns;
+  animation-duration: 36s, 36s; /* = photo count (4) x 9s per photo */
+  animation-timing-function: ease-in-out, linear;
+  animation-iteration-count: infinite, infinite;
+  animation-fill-mode: backwards, backwards;
 }
 
-/* Mobile only: narrow/tall screens crop left/right under cover, and at
-   the natural (unzoomed) scale the full photo height is shown, which
-   keeps the ceiling lamps clearly in view. Enlarging the image's own
-   box to 140% before cover/object-position apply, anchored bottom-left
-   (chair + figure both sit in the left half of the photo), pushes the
-   crop in enough to match the Figma mobile frame (FORMA_mob_7) —
-   chair/figure stay put, ceiling/lamps crop out almost entirely. */
-@media (max-width: 767px) {
-  .page-home .bg-photo img {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 140%;
-    height: 140%;
-    object-position: left bottom;
+/* Dark overlay above every photo, below the foreground content, so the
+   white headline/logo/buttons stay readable no matter which photo is
+   showing. */
+.page-home .crossfade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+/* Stagger: figure N starts N x 9s into the loop (same delay applied to
+   both animations, so the zoom lines up with the dissolve). Figure 1
+   uses a negative delay (-3s) instead of 0s so it is already mid-hold
+   (fully opaque) the instant the page loads, rather than fading in
+   from black — it's "the photo already showing", not a fresh slide. */
+.page-home .crossfade figure:nth-child(1) { animation-delay: -3s, -3s; }
+.page-home .crossfade figure:nth-child(2) { animation-delay: 6s, 6s; }
+.page-home .crossfade figure:nth-child(3) { animation-delay: 15s, 15s; }
+.page-home .crossfade figure:nth-child(4) { animation-delay: 24s, 24s; }
+
+/* One shared keyframe, reused by every figure via the delays above.
+   Percentages are this photo's own local timeline as a % of the full
+   36s loop: 0% = not visible yet, fade in over 3s (3/36 = 8.3333%),
+   hold fully opaque until the 9s mark (25%), fade out over the next
+   3s (33.3333%), then stay invisible for the rest of the loop until
+   its next turn comes around. */
+@keyframes forma-crossfade {
+  0%       { opacity: 0; }
+  8.3333%  { opacity: 1; }
+  25%      { opacity: 1; }
+  33.3333% { opacity: 0; }
+  100%     { opacity: 0; }
+}
+
+/* Slow zoom-in, mapped to the SAME 0%-33.3333% window the photo is
+   actually visible for above (fade-in + hold + fade-out) — the zoom
+   reaches its full amount exactly as the photo fades out, then holds
+   there for the remaining invisible 66.6667% of the loop until it
+   resets to scale(1) at 0%, which happens while fully transparent so
+   the reset is never seen. Spreading the growth across the whole 36s
+   loop (instead of just the ~12s a photo is visible) made it far too
+   subtle to notice — this keeps it slow but keeps it visible. */
+@keyframes forma-kenburns {
+  0%       { transform: scale(1); }
+  33.3333% { transform: scale(1.12); }
+  100%     { transform: scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-home .crossfade figure {
+    animation: none;
+    opacity: 0;
+  }
+
+  .page-home .crossfade figure:nth-child(1) {
+    opacity: 1;
+  }
+}
+
+/* ---- Photo 1 per-breakpoint positioning ----
+   Only the first photo (the one already live) gets custom cropping
+   for now; every other photo stays on the generic "center center"
+   rule above until it needs its own tuning. Edit each block below
+   independently — mobile, tablet, desktop never share a value. */
+
+/* Mobile (default, <768px) */
+.page-home .crossfade figure:nth-child(1) {
+  background-position: left bottom;
+}
+
+/* Tablet (768px–1279px) */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .page-home .crossfade figure:nth-child(1) {
+    background-position: center 55%;
+  }
+}
+
+/* Desktop (1280px+) */
+@media (min-width: 1280px) {
+  .page-home .crossfade figure:nth-child(1) {
+    background-position: center 58%;
   }
 }
 

@@ -9,8 +9,11 @@ $bodyClass = 'body-home';
 require __DIR__ . '/includes/header.php';
 ?>
 <main class="screen page-home">
-  <div class="el bg-photo">
-    <img src="/assets/images/home-bg-new.jpg" alt="FORMA salon interior">
+  <div class="el crossfade" aria-hidden="true">
+    <figure style="background-image:url('/assets/images/home-bg-new.jpg')"></figure>
+    <figure style="background-image:url('/assets/images/photo/photo_2026-08-21_19-36-02.jpg')"></figure>
+    <figure style="background-image:url('/assets/images/photo/photo_2026-08-21_19-36-04.jpg')"></figure>
+    <figure style="background-image:url('/assets/images/photo/photo_2026-08-21_19-36-05.jpg')"></figure>
   </div>
 
   <div class="content">
