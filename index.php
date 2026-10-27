@@ -29,7 +29,7 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="actions">
-        <a class="btn" id="booking-btn" href="https://beautyprosoftware.com/b/688499" target="_blank" rel="noopener">booking</a>
+        <a class="btn" id="booking-btn" href="mailto:<?= htmlspecialchars($config['contact_email']) ?>?subject=Booking%20request">booking</a>
         <a class="btn" href="/new-client.php">new client</a>
       </div>
     </div>
@@ -118,10 +118,15 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 <?php endif; ?>
-<?php
-// The BeautyPro booking widget (online-booking-init, database 688499) is
-// disabled: beautyprosoftware.com/b/688499 sends X-Frame-Options: SAMEORIGIN,
-// so its modal iframe renders blank on this site. #booking-btn links to the
-// booking page in a new tab instead. Restore the widget once that's fixed.
-?>
+<script type="module">
+import { init, openModule } from "https://beautyprosoftware.com/online-booking-init/index.js";
+init({
+  database: 688499,
+  elementId: 'booking-btn'
+});
+document.getElementById('booking-btn').addEventListener('click', function (e) {
+  e.preventDefault();
+  openModule();
+});
+</script>
 <?php require __DIR__ . '/includes/footer.php'; ?>
