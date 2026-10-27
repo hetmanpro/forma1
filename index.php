@@ -1,6 +1,6 @@
 <?php
 $config = require __DIR__ . '/includes/config.php';
-$pageTitle = 'FORMA — Coming Soon, Vienna';
+$pageTitle = 'FORMA — Hair & Coffee, Vienna';
 $pageCss = ['/assets/css/home.css'];
 $pageJs = $config['typed_headline_enabled']
     ? ['https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js']
