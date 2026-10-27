@@ -19,7 +19,7 @@ require __DIR__ . '/includes/header.php';
   <div class="content">
     <div class="content-top">
       <?php if ($config['typed_headline_enabled']): ?>
-      <p class="opening-date"><span class="opening-date-typed-wrap" id="opening-date-typed-wrap"><span id="opening-date-typed">SALON COMING SOON</span></span><br>&nbsp;</p>
+      <p class="opening-date"><span class="opening-date-typed-wrap" id="opening-date-typed-wrap"><span id="opening-date-typed">SALON NOW OPEN</span></span><br>&nbsp;</p>
       <?php else: ?>
       <p class="opening-date">COMING SOON<br>&nbsp;</p>
       <?php endif; ?>
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var wrap = document.getElementById('opening-date-typed-wrap');
   if (!target || !wrap) return;
 
-  var phrases = ['SALON COMING SOON', 'COFFEE BAR COMING SOON', 'WEBSITE COMING SOON'];
+  var phrases = ['SALON NOW OPEN', 'COFFEE BAR COMING SOON', 'WEBSITE COMING SOON'];
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (reduceMotion || typeof Typed === 'undefined') {
